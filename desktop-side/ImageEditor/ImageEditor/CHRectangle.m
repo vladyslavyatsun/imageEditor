@@ -1,14 +1,18 @@
 //
-//  AppDelegate.h
+//  CHRectangle.m
 //  ImageEditor
 //
 //  Created by Владислав Яцун on 8/19/16.
 //  Copyright © 2016 Владислав Яцун. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import "CHRectangle.h"
 
-@interface CHAppDelegate : NSObject <NSApplicationDelegate>
+@implementation CHRectangle
+
+- (void)addPoint:(NSPoint)point
+{
+    
+}
 
 @end
-

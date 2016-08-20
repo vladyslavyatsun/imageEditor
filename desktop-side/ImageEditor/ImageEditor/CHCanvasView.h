@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  CHCanvasView.h
 //  ImageEditor
 //
 //  Created by Владислав Яцун on 8/19/16.
@@ -8,7 +8,5 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface CHAppDelegate : NSObject <NSApplicationDelegate>
-
+@interface CHCanvasView : NSView
 @end
-
