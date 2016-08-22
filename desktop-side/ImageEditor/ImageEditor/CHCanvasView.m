@@ -7,44 +7,50 @@
 //
 
 #import "CHCanvasView.h"
-#import "CHAbstractElement.h"
+#import "CHAbstractElementRepresentation.h"
+#import "CHShapeRepresentation.h"
 
 @interface CHCanvasView()
 @property (nonatomic, assign) NSMutableArray *elements;
-@property (nonatomic, readwrite, retain) CHAbstractElement *anElement;
+@property (nonatomic, assign) CHAbstractElementRepresentation *selectedElement;
+////@property (nonatomic, readwrite, retain) CHShapeRepresentation *anElement;
 @end
 
 @implementation CHCanvasView
 
 
-- (instancetype) initWithElements:(NSArray *)figures
+- (instancetype) initWithElements:(NSArray *)elements
 {
     self = [super init];
     if(self)
     {
-        _elements = [[NSMutableArray alloc]init];
-        [_elements addObjectsFromArray:figures];
+        _elements = [[NSMutableArray alloc] init];
+        [_elements addObjectsFromArray:elements];
     }
-    
     return self;
 }
 
 
-
+- (void)addElementOnView:(CHAbstractElementRepresentation *)anElement
+{
+    if(anElement)
+    {
+        [self.elements addObject:anElement];
+        
+        [self setNeedsDisplayInRect:anElement.rect];
+    }
+}
 
 
 - (void)drawRect:(NSRect)dirtyRect
 {
     [super drawRect:dirtyRect];
     
-    
     [[NSColor whiteColor] set];
     
     NSRectFill(dirtyRect);
     
-    NSLog(@"width  ------------ x %f ---------------- %f",dirtyRect.origin.x, dirtyRect.size.width);
-    
-    for (CHAbstractElement *figure in self.elements)
+    for (CHAbstractElementRepresentation *figure in self.elements)
     {
         [figure draw];
     }
@@ -54,27 +60,41 @@
 #pragma mark - mouse events
 - (void)mouseDown:(NSEvent *)event
 {
-    
+
     NSPoint locationInView = [self convertPoint:event.locationInWindow fromView:nil];
     
-    //CHAbstractElement *figure = (CHAbstractElement *)[[CHAbstractElement lineWithInitialPoint:locationInView] retain];
-    
-    if (self.anElement != nil)
+    self.selectedElement.select = NO;
+    for (CHAbstractElementRepresentation *element in [self.elements reverseObjectEnumerator])
     {
-        self.anElement.color = [NSColor redColor];
-        self.anElement.thickness = 4.0;
-        [self.elements addObject:self.anElement];
-    
-        [self.anElement release];
-    }
-    else
-    {
-        for (CHAbstractElement *element in self.elements)
+        if([element hitTest:locationInView])
         {
-            BOOL containsInView = [element.path containsPoint:locationInView];
-            NSLog(@" >>>>> %d", containsInView);
+            element.select = YES;
+            self.selectedElement = element;
+            break;
         }
     }
+    
+    
+//    
+//    if (self.anElement != nil)
+//    {
+//        
+//        self.anElement.color = [NSColor redColor];
+//        self.anElement.thickness = 4.0;
+//        [self.elements addObject:self.anElement];
+//    
+//        [self.anElement release];
+//    }
+//    else
+//    {
+//        for (CHAbstractElement *element in self.elements)
+//        {
+//            BOOL containsInView = [element.path containsPoint:locationInView];
+//            NSLog(@" >>>>> %d", containsInView);
+//        }
+//    }
+    
+    
     
     
     [self setNeedsDisplay:YES];
@@ -82,10 +102,7 @@
 
 - (void)mouseDragged:(NSEvent *)event
 {
-    NSPoint locationInView = [self convertPoint:event.locationInWindow fromView:nil];
-    
-    CHAbstractElement *figure = [self.elements lastObject];
-    [figure addPoint:locationInView];
+   // NSPoint locationInView = [self convertPoint:event.locationInWindow fromView:nil];
     
     [self setNeedsDisplay:YES];
     
@@ -96,6 +113,10 @@
     return YES;
 }
 
+- (BOOL)isFlipped
+{
+    return YES;
+}
 
 #warning - test method
 - (NSMutableArray *)elements
@@ -105,6 +126,13 @@
         _elements = [[NSMutableArray alloc]init];
     }
     return _elements;
+}
+
+- (void) dealloc
+{
+ //   [_anElement release];
+    [_elements release];
+    [super dealloc];
 }
 
 @end

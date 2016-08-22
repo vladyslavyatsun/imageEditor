@@ -34,6 +34,8 @@
         CHStandartImage *image = [[CHStandartImage alloc] initWithPath:path withTitle:path];
         
         [self addImage:image];
+        
+        [image release];
     }
 }
 

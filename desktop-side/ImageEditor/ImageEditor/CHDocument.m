@@ -7,7 +7,7 @@
 //
 
 #import "CHDocument.h"
-
+#import "CHDocumentWindowController.h"
 @interface CHDocument ()
 
 @end
@@ -29,12 +29,12 @@
     return YES;
 }
 
-- (NSString *)windowNibName
-{
-    // Override returning the nib file name of the document
-    // If you need to use a subclass of NSWindowController or if your document supports multiple NSWindowControllers, you should remove this method and override -makeWindowControllers instead.
-    return @"CHDocument";
-}
+//- (NSString *)windowNibName
+//{
+//    // Override returning the nib file name of the document
+//    // If you need to use a subclass of NSWindowController or if your document supports multiple NSWindowControllers, you should remove this method and override -makeWindowControllers instead.
+//    return @"CHDocument";
+//}
 
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError
 {
@@ -51,6 +51,16 @@
     // If you override either of these, you should also override -isEntireFileLoaded to return NO if the contents are lazily loaded.
     [NSException raise:@"UnimplementedMethod" format:@"%@ is unimplemented", NSStringFromSelector(_cmd)];
     return YES;
+}
+
+- (void)makeWindowControllers
+{
+    NSArray *myControllers = [self windowControllers];
+    // If this document displaced a transient document, it will already have been assigned a window controller. If that is not the case, create one.
+    if ([myControllers count] == 0)
+    {
+        [self addWindowController:[[[CHDocumentWindowController alloc] init] autorelease]];
+    }
 }
 
 @end

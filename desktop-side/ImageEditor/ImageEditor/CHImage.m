@@ -8,66 +8,22 @@
 
 #import "CHImage.h"
 
-@interface CHImage()
-@property (nonatomic, retain) NSImage *anImage;
-@end
-
 @implementation CHImage
-
-- (instancetype)initWithInitialPoint:(NSPoint)initialPoint imagePath:(NSString *)imagePath
+- (instancetype)initWithStartPoint:(NSPoint)startPoint endPoint:(NSPoint)endPoint image:(NSImage *)image
 {
-    self = [super init];
-    if(self)
+    self = [super initWithStartPoint:startPoint endPoint:endPoint];
+    
+    if (self)
     {
-        self.initialPoint = initialPoint;
-        _anImage = [[NSImage alloc] initWithContentsOfFile:imagePath];
-        
+        _image = [image retain];
     }
+    
     return self;
-}
-
-
-- (void)draw
-{
-    [self.anImage drawInRect:NSMakeRect(20, 20, 20, 20)];
-}
-
-- (void)addPoint:(NSPoint)point
-{
-    NSLog(@"image doesn't have path");
-}
-
-- (NSColor *)color
-{
-    NSLog(@"image doesn't have color");
-    return nil;
-}
-
-- (void)setColor:(NSColor *)color
-{
-    NSLog(@"image doesn't have color");
-}
-
-- (CGFloat)thickness
-{
-    NSLog(@"image doesn't have thickness");
-    return 0;
-}
-
-- (NSBezierPath *)path
-{
-    NSLog(@"image doesn't have path");
-    return nil;
-}
-
-- (void)setPath:(NSBezierPath *)path
-{
-    NSLog(@"image doesn't have color");
 }
 
 - (void)dealloc
 {
-    [_anImage release];
+    [_image release];
     [super dealloc];
 }
 @end

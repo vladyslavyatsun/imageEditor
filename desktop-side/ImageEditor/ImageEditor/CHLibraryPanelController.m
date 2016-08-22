@@ -7,6 +7,11 @@
 //
 
 #import "CHLibraryPanelController.h"
+
+#warning - 1
+// gavno!!! panel doesn`t know about document
+#import "CHDocumentWindowController.h"
+
 NSString * const kCHImageIdentifier = @"image";
 NSString * const kCHTitleIdentifier = @"title";
 NSString * const kCHResourcesDirectoryName = @"image";
@@ -42,9 +47,18 @@ NSString * const kCHResourcesDirectoryName = @"image";
     [self.mImagePathArray addObjectsFromArray:[mainBundle pathsForResourcesOfType:@"png" inDirectory:@"image"]];
 }
 
+
+
 - (IBAction)onTableDoubleClickAction:(NSTableView *)sender
 {
-    NSLog(@"double action");
+    NSInteger row = sender.selectedRow;
+    if (row > -1)
+    {
+        NSDocument *curentDocument = [NSDocumentController sharedDocumentController].currentDocument;
+        CHDocumentWindowController *documentWindow = curentDocument.windowControllers.lastObject;
+        
+        [documentWindow addImageOnViewWithInitialPoint:NSZeroPoint path:self.mImagePathArray[row]];
+    }
 }
 
 

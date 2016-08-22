@@ -10,13 +10,4 @@
 
 @implementation CHLine
 
-- (void)addPoint:(NSPoint)point
-{
-    [self.path removeAllPoints];
-    [self.path moveToPoint:self.initialPoint];
-    [self.path lineToPoint:point];
-}
-
-
-
 @end

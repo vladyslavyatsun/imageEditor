@@ -28,6 +28,15 @@
 		8A3DED041D6890D7008E0132 /* CHStandartImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3DED031D6890D7008E0132 /* CHStandartImage.m */; };
 		8A3DED061D6895AF008E0132 /* image in Resources */ = {isa = PBXBuildFile; fileRef = 8A3DED051D6895AF008E0132 /* image */; };
 		8A3DED0A1D68D774008E0132 /* CHImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3DED091D68D774008E0132 /* CHImage.m */; };
+		8A3DED131D69E57F008E0132 /* CHDocumentWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3DED121D69E57F008E0132 /* CHDocumentWindowController.m */; };
+		8A3DED181D6A4175008E0132 /* CHShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3DED171D6A4175008E0132 /* CHShape.m */; };
+		8A3DED1C1D6B1137008E0132 /* CHAbstractElementRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3DED1B1D6B1137008E0132 /* CHAbstractElementRepresentation.m */; };
+		8A3DED1F1D6B1535008E0132 /* CHImageRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3DED1E1D6B1535008E0132 /* CHImageRepresentation.m */; };
+		8A3DED221D6B1E01008E0132 /* CHShapeRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3DED211D6B1E01008E0132 /* CHShapeRepresentation.m */; };
+		8A3DED251D6B1F80008E0132 /* CHLineRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3DED241D6B1F80008E0132 /* CHLineRepresentation.m */; };
+		8A3DED281D6B21B4008E0132 /* CHEllipseRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3DED271D6B21B4008E0132 /* CHEllipseRepresentation.m */; };
+		8A3DED2B1D6B226C008E0132 /* CHRectangleRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3DED2A1D6B226C008E0132 /* CHRectangleRepresentation.m */; };
+		8A3DED2E1D6B5285008E0132 /* CHDocumentModelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3DED2D1D6B5285008E0132 /* CHDocumentModelController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +76,24 @@
 		8A3DED051D6895AF008E0132 /* image */ = {isa = PBXFileReference; lastKnownFileType = folder; path = image; sourceTree = "<group>"; };
 		8A3DED081D68D774008E0132 /* CHImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHImage.h; sourceTree = "<group>"; };
 		8A3DED091D68D774008E0132 /* CHImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHImage.m; sourceTree = "<group>"; };
+		8A3DED111D69E57F008E0132 /* CHDocumentWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHDocumentWindowController.h; sourceTree = "<group>"; };
+		8A3DED121D69E57F008E0132 /* CHDocumentWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHDocumentWindowController.m; sourceTree = "<group>"; };
+		8A3DED161D6A4175008E0132 /* CHShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHShape.h; sourceTree = "<group>"; };
+		8A3DED171D6A4175008E0132 /* CHShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHShape.m; sourceTree = "<group>"; };
+		8A3DED1A1D6B1137008E0132 /* CHAbstractElementRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHAbstractElementRepresentation.h; sourceTree = "<group>"; };
+		8A3DED1B1D6B1137008E0132 /* CHAbstractElementRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHAbstractElementRepresentation.m; sourceTree = "<group>"; };
+		8A3DED1D1D6B1535008E0132 /* CHImageRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHImageRepresentation.h; sourceTree = "<group>"; };
+		8A3DED1E1D6B1535008E0132 /* CHImageRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHImageRepresentation.m; sourceTree = "<group>"; };
+		8A3DED201D6B1E01008E0132 /* CHShapeRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHShapeRepresentation.h; sourceTree = "<group>"; };
+		8A3DED211D6B1E01008E0132 /* CHShapeRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHShapeRepresentation.m; sourceTree = "<group>"; };
+		8A3DED231D6B1F80008E0132 /* CHLineRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHLineRepresentation.h; sourceTree = "<group>"; };
+		8A3DED241D6B1F80008E0132 /* CHLineRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHLineRepresentation.m; sourceTree = "<group>"; };
+		8A3DED261D6B21B4008E0132 /* CHEllipseRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHEllipseRepresentation.h; sourceTree = "<group>"; };
+		8A3DED271D6B21B4008E0132 /* CHEllipseRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHEllipseRepresentation.m; sourceTree = "<group>"; };
+		8A3DED291D6B226C008E0132 /* CHRectangleRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHRectangleRepresentation.h; sourceTree = "<group>"; };
+		8A3DED2A1D6B226C008E0132 /* CHRectangleRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHRectangleRepresentation.m; sourceTree = "<group>"; };
+		8A3DED2C1D6B5285008E0132 /* CHDocumentModelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHDocumentModelController.h; sourceTree = "<group>"; };
+		8A3DED2D1D6B5285008E0132 /* CHDocumentModelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHDocumentModelController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,9 +129,13 @@
 				8A3DED071D68962F008E0132 /* Panels */,
 				8A3DECC11D676A0E008E0132 /* CHDocument.h */,
 				8A3DECC21D676A0E008E0132 /* CHDocument.m */,
-				8A3DECD81D678499008E0132 /* Model */,
 				8A3DECBB1D676A0E008E0132 /* CHAppDelegate.h */,
 				8A3DECBC1D676A0E008E0132 /* CHAppDelegate.m */,
+				8A3DED2C1D6B5285008E0132 /* CHDocumentModelController.h */,
+				8A3DED2D1D6B5285008E0132 /* CHDocumentModelController.m */,
+				8A3DED111D69E57F008E0132 /* CHDocumentWindowController.h */,
+				8A3DED121D69E57F008E0132 /* CHDocumentWindowController.m */,
+				8A3DECD81D678499008E0132 /* Model */,
 				8A3DECE61D67956D008E0132 /* CHCanvasView.h */,
 				8A3DECE71D67956D008E0132 /* CHCanvasView.m */,
 				8A3DECC71D676A0E008E0132 /* Assets.xcassets */,
@@ -127,16 +158,19 @@
 			isa = PBXGroup;
 			children = (
 				8A3DECFE1D688D50008E0132 /* Image Library */,
-				8A3DECD91D6784B4008E0132 /* Editor Elements */,
+				8A3DECD91D6784B4008E0132 /* Model Elements */,
+				8A3DED191D6B10F7008E0132 /* View Element Representation */,
 			);
 			name = Model;
 			sourceTree = "<group>";
 		};
-		8A3DECD91D6784B4008E0132 /* Editor Elements */ = {
+		8A3DECD91D6784B4008E0132 /* Model Elements */ = {
 			isa = PBXGroup;
 			children = (
 				8A3DECDA1D6784FE008E0132 /* CHAbstractElement.h */,
 				8A3DECDB1D6784FE008E0132 /* CHAbstractElement.m */,
+				8A3DED161D6A4175008E0132 /* CHShape.h */,
+				8A3DED171D6A4175008E0132 /* CHShape.m */,
 				8A3DECDD1D678CA3008E0132 /* CHLine.h */,
 				8A3DECDE1D678CA3008E0132 /* CHLine.m */,
 				8A3DECE01D678DD8008E0132 /* CHRectangle.h */,
@@ -146,7 +180,7 @@
 				8A3DED081D68D774008E0132 /* CHImage.h */,
 				8A3DED091D68D774008E0132 /* CHImage.m */,
 			);
-			name = "Editor Elements";
+			name = "Model Elements";
 			sourceTree = "<group>";
 		};
 		8A3DECE91D67958F008E0132 /* Resourses */ = {
@@ -192,6 +226,25 @@
 				8A3DECF51D687513008E0132 /* CHInspectorPanelController.m */,
 			);
 			name = Panels;
+			sourceTree = "<group>";
+		};
+		8A3DED191D6B10F7008E0132 /* View Element Representation */ = {
+			isa = PBXGroup;
+			children = (
+				8A3DED1A1D6B1137008E0132 /* CHAbstractElementRepresentation.h */,
+				8A3DED1B1D6B1137008E0132 /* CHAbstractElementRepresentation.m */,
+				8A3DED1D1D6B1535008E0132 /* CHImageRepresentation.h */,
+				8A3DED1E1D6B1535008E0132 /* CHImageRepresentation.m */,
+				8A3DED201D6B1E01008E0132 /* CHShapeRepresentation.h */,
+				8A3DED211D6B1E01008E0132 /* CHShapeRepresentation.m */,
+				8A3DED231D6B1F80008E0132 /* CHLineRepresentation.h */,
+				8A3DED241D6B1F80008E0132 /* CHLineRepresentation.m */,
+				8A3DED261D6B21B4008E0132 /* CHEllipseRepresentation.h */,
+				8A3DED271D6B21B4008E0132 /* CHEllipseRepresentation.m */,
+				8A3DED291D6B226C008E0132 /* CHRectangleRepresentation.h */,
+				8A3DED2A1D6B226C008E0132 /* CHRectangleRepresentation.m */,
+			);
+			name = "View Element Representation";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,20 +321,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A3DED181D6A4175008E0132 /* CHShape.m in Sources */,
 				8A3DED011D688D8C008E0132 /* CHImageLibrary.m in Sources */,
 				8A3DECC31D676A0E008E0132 /* CHDocument.m in Sources */,
 				8A3DECE51D678DF8008E0132 /* CHEllipse.m in Sources */,
 				8A3DECF71D687513008E0132 /* CHInspectorPanelController.m in Sources */,
+				8A3DED131D69E57F008E0132 /* CHDocumentWindowController.m in Sources */,
 				8A3DECC01D676A0E008E0132 /* main.m in Sources */,
+				8A3DED2B1D6B226C008E0132 /* CHRectangleRepresentation.m in Sources */,
 				8A3DECED1D687389008E0132 /* CHInstrumentsPanelController.m in Sources */,
+				8A3DED221D6B1E01008E0132 /* CHShapeRepresentation.m in Sources */,
+				8A3DED1C1D6B1137008E0132 /* CHAbstractElementRepresentation.m in Sources */,
 				8A3DED0A1D68D774008E0132 /* CHImage.m in Sources */,
 				8A3DECE81D67956D008E0132 /* CHCanvasView.m in Sources */,
 				8A3DECDC1D6784FE008E0132 /* CHAbstractElement.m in Sources */,
 				8A3DECBD1D676A0E008E0132 /* CHAppDelegate.m in Sources */,
+				8A3DED2E1D6B5285008E0132 /* CHDocumentModelController.m in Sources */,
+				8A3DED281D6B21B4008E0132 /* CHEllipseRepresentation.m in Sources */,
 				8A3DECE21D678DD8008E0132 /* CHRectangle.m in Sources */,
 				8A3DED041D6890D7008E0132 /* CHStandartImage.m in Sources */,
+				8A3DED1F1D6B1535008E0132 /* CHImageRepresentation.m in Sources */,
 				8A3DECDF1D678CA3008E0132 /* CHLine.m in Sources */,
 				8A3DECF21D6873B6008E0132 /* CHLibraryPanelController.m in Sources */,
+				8A3DED251D6B1F80008E0132 /* CHLineRepresentation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,6 +456,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = NO;
 				COMBINE_HIDPI_IMAGES = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				INFOPLIST_FILE = ImageEditor/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CH.ImageEditor;
@@ -407,6 +470,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = NO;
 				COMBINE_HIDPI_IMAGES = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				INFOPLIST_FILE = ImageEditor/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CH.ImageEditor;
@@ -433,6 +497,7 @@
 				8A3DECD11D676A0E008E0132 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

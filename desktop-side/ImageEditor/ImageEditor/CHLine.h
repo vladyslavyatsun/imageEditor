@@ -6,8 +6,8 @@
 //  Copyright © 2016 Владислав Яцун. All rights reserved.
 //
 
-#import "CHAbstractElement.h"
+#import "CHShape.h"
 
-@interface CHLine : CHAbstractElement
+@interface CHLine : CHShape
 
 @end

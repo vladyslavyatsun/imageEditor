@@ -10,6 +10,5 @@
 
 @interface CHDocument : NSDocument
 
-
 @end
 

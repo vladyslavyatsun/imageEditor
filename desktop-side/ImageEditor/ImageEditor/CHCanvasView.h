@@ -7,6 +7,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
+@class CHAbstractElementRepresentation;
 
 @interface CHCanvasView : NSView
+- (void)addElementOnView:(CHAbstractElementRepresentation *)anElement;
+- (instancetype) initWithElements:(NSArray *)elements;
 @end

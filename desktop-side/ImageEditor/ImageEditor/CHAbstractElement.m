@@ -12,59 +12,52 @@
 #import "CHEllipse.h"
 #import "CHImage.h"
 
+NSString * const kCHElementDidUpdate = @"element updated";
 @implementation CHAbstractElement
 
-
-- (instancetype)initWithInitialPoint:(NSPoint)initialPoint
+- (instancetype)initWithStartPoint:(NSPoint)startPoint endPoint:(NSPoint)endPoint
 {
     self = [super init];
     if (self)
-        
     {
-        _initialPoint = initialPoint;
-        _path = [NSBezierPath bezierPath];
-        [_path moveToPoint:initialPoint];
+        _startPoint = startPoint;
+        _endPoint = endPoint;
     }
     return self;
 }
 
-+ (CHLine *)lineWithInitialPoint:(NSPoint)initialPoint
+
++ (CHLine *)lineWithStartPoint:(NSPoint)startPoint endPoint:(NSPoint)endPoint color:(NSColor *)color
 {
-    return [[[CHLine alloc] initWithInitialPoint:initialPoint] autorelease];
+    return [[[CHLine alloc] initWithStartPoint:startPoint endPoint:endPoint color:color] autorelease];
+}
++ (CHRectangle *)rectangleWithStartPoint:(NSPoint)startPoint endPoint:(NSPoint)endPoint color:(NSColor *)color
+{
+    return [[[CHRectangle alloc] initWithStartPoint:startPoint endPoint:endPoint color:color] autorelease];
+}
++ (CHEllipse *)ellipseWithStartPoint:(NSPoint)startPoint endPoint:(NSPoint)endPoint color:(NSColor *)color
+{
+    return [[[CHEllipse alloc] initWithStartPoint:startPoint endPoint:endPoint color:color] autorelease];
+}
++ (CHImage *)imageWithStartPoint:(NSPoint)startPoint endPoint:(NSPoint)endPoint image:(NSImage *)image
+{
+    return [[[CHImage alloc] initWithStartPoint:startPoint endPoint:endPoint image:image] autorelease];
 }
 
-+ (CHRectangle *)rectangleWithInitialPoint:(NSPoint)initialPoint
+- (void)setStartPoint:(NSPoint)startPoint
 {
-    return [[[CHRectangle alloc] initWithInitialPoint:initialPoint] autorelease];
+    _startPoint = startPoint;
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCHElementDidUpdate object:self];
 }
 
-+ (CHEllipse *)ellipseWithInitialPoint:(NSPoint)initialPoint
+- (void)setEndPoint:(NSPoint)endPoint
 {
-    return [[[CHEllipse alloc] initWithInitialPoint:initialPoint] autorelease];
-}
-
-+ (CHImage *)imageWithInitialPoint:(NSPoint)initialPoint imagePath:(NSString *)imagePath
-{
-    return [[CHImage alloc] initWithInitialPoint:initialPoint imagePath:imagePath];
-}
-
-
-- (void)addPoint:(NSPoint)point
-{
-    NSLog(@"You must override %@ in a subclass", NSStringFromSelector(_cmd));
-}
-
-- (void)draw
-{    
-    [self.color set];
-    [self.path setLineWidth:self.thickness];
-    [self.path stroke];
+    _endPoint = endPoint;
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCHElementDidUpdate object:self];
 }
 
 - (void)dealloc
 {
-    [_path release];
-    [_color release];
     [super dealloc];
 }
 @end

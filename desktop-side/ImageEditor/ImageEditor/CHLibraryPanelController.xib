@@ -29,7 +29,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="82" rowSizeStyle="automatic" headerView="qLc-hw-bSq" viewBased="YES" id="e3r-y5-avf">
-                                    <rect key="frame" x="0.0" y="0.0" width="334" height="334"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="333" height="334"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -66,7 +66,7 @@
                                                 </tableCellView>
                                             </prototypeCellViews>
                                         </tableColumn>
-                                        <tableColumn identifier="title" width="148" minWidth="40" maxWidth="1000" id="CIe-5B-pSW">
+                                        <tableColumn identifier="title" width="147" minWidth="40" maxWidth="1000" id="CIe-5B-pSW">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="title">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -113,7 +113,7 @@
                             </subviews>
                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </clipView>
-                        <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="01u-dA-HPh">
+                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="01u-dA-HPh">
                             <rect key="frame" x="1" y="341" width="333" height="16"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>

@@ -10,22 +10,21 @@
 @class CHLine;
 @class CHEllipse;
 @class CHRectangle;
+@class CHImage;
+
+extern NSString * const kCHElementDidUpdate;
 
 @interface CHAbstractElement : NSObject
 
-@property (nonatomic, retain) NSBezierPath *path;
-@property (nonatomic, retain) NSColor *color;
-@property (nonatomic, assign) CGFloat thickness;
-@property (nonatomic, assign) NSPoint initialPoint;
+@property (nonatomic, assign) NSPoint startPoint;
+@property (nonatomic, assign) NSPoint endPoint;
 
-- (instancetype)initWithInitialPoint:(NSPoint)initialPoint;
-- (void)addPoint:(NSPoint)point;
-- (void)draw;
+- (instancetype)initWithStartPoint:(NSPoint)startPoint endPoint:(NSPoint)endPoint;
 
-+ (CHLine *)lineWithInitialPoint:(NSPoint)initialPoint;
-+ (CHRectangle *)rectangleWithInitialPoint:(NSPoint)initialPoint;
-+ (CHEllipse *)ellipseWithInitialPoint:(NSPoint)initialPoint;
-
++ (CHLine *)lineWithStartPoint:(NSPoint)startPoint endPoint:(NSPoint)endPoint color:(NSColor *)color;
++ (CHRectangle *)rectangleWithStartPoint:(NSPoint)startPoint endPoint:(NSPoint)endPoint color:(NSColor *)color;
++ (CHEllipse *)ellipseWithStartPoint:(NSPoint)startPoint endPoint:(NSPoint)endPoint color:(NSColor *)color;
++ (CHImage *)imageWithStartPoint:(NSPoint)startPoint endPoint:(NSPoint)endPoint image:(NSImage *)image;
 
 
 @end

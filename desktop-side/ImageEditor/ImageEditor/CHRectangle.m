@@ -10,9 +10,4 @@
 
 @implementation CHRectangle
 
-- (void)addPoint:(NSPoint)point
-{
-    
-}
-
 @end

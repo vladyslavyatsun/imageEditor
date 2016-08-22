@@ -9,5 +9,8 @@
 #import "CHAbstractElement.h"
 
 @interface CHImage : CHAbstractElement
-- (instancetype)initWithInitialPoint:(NSPoint)initialPoint imagePath:(NSString *)imagePath;
+@property (nonatomic, retain) NSImage *image;
+
+- (instancetype)initWithStartPoint:(NSPoint)startPoint endPoint:(NSPoint)endPoint image:(NSImage *)image;
+
 @end

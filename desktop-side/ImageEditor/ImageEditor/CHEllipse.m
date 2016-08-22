@@ -10,9 +10,5 @@
 
 @implementation CHEllipse
 
-- (void)addPoint:(NSPoint)point
-{
-    
-}
 
 @end
