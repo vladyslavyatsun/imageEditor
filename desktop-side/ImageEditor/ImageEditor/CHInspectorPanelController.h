@@ -7,7 +7,8 @@
 //
 
 #import <Cocoa/Cocoa.h>
+@class CHAbstractElementRepresentation;
 
 @interface CHInspectorPanelController : NSWindowController
-
+@property (nonatomic, assign) CHAbstractElementRepresentation *selectedElement;
 @end

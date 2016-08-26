@@ -12,9 +12,9 @@
 @class CHRectangle;
 @class CHImage;
 
-extern NSString * const kCHElementDidUpdate;
+static NSString * const kCHAbstractElementDidUpdate;
 
-@interface CHAbstractElement : NSObject
+@interface CHAbstractElement : NSObject <NSCoding>
 
 @property (nonatomic, assign) NSPoint startPoint;
 @property (nonatomic, assign) NSPoint endPoint;

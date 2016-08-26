@@ -9,40 +9,27 @@
 #import "CHImageRepresentation.h"
 #import "CHImage.h"
 
-@interface CHImageRepresentation ()
-@property (nonatomic, retain) NSImage *image;
-@end
-
 @implementation CHImageRepresentation
-- (instancetype)initWithModelElement:(CHAbstractElement *)modelElement
-{
-    self = [super initWithModelElement:modelElement];
-    
-    if (self)
-    {
-        _image = ((CHImage *)modelElement).image;
-    }
-    return self;
-}
 
 - (void)draw
 {
+    NSImage *image = ((CHImage *)self.modelElement).image;
+    
     if ([self isSelected])
     {
         [NSGraphicsContext saveGraphicsState];
         NSSetFocusRingStyle(NSFocusRingAbove);
-        [self.image drawInRect:self.rect];
+        [image drawInRect:self.rect];
         [NSGraphicsContext restoreGraphicsState];
     }
     else
     {
-        [self.image drawInRect:self.rect];
+        [image drawInRect:self.rect];
     }
 }
 
 - (void)dealloc
 {
-    [_image release];
     [super dealloc];
 }
 

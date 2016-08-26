@@ -7,6 +7,7 @@
 //
 
 #import "CHInstrumentsPanelController.h"
+#import "CHDocumentWindowController.h"
 
 @interface CHInstrumentsPanelController ()
 
@@ -19,10 +20,29 @@
     return [super initWithWindowNibName:@"CHInstrumentsPanelController"];
 }
 
-- (void)windowDidLoad {
+- (void)windowDidLoad
+{
     [super windowDidLoad];
-    
-    // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+}
+
+- (IBAction)selectPointer:(id)sender
+{
+    [self.currentDocumentWindowController setToolForDrawOnCanvas:kCHPointerTool];
+}
+
+- (IBAction)selectLine:(id)sender
+{
+    [self.currentDocumentWindowController setToolForDrawOnCanvas:kCHLineTool];
+}
+
+- (IBAction)selectRectangle:(id)sender
+{
+    [self.currentDocumentWindowController setToolForDrawOnCanvas:kCHRectangleTool];
+}
+
+- (IBAction)selectEllipse:(id)sender
+{
+    [self.currentDocumentWindowController setToolForDrawOnCanvas:kCHEllipseTool];
 }
 
 @end

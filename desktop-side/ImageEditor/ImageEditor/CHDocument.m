@@ -7,9 +7,11 @@
 //
 
 #import "CHDocument.h"
+#import "CHAbstractElement.h"
 #import "CHDocumentWindowController.h"
+#import "CHDocumentModelController.h"
 @interface CHDocument ()
-
+@property (nonatomic, retain) CHDocumentModelController *modelController;
 @end
 
 @implementation CHDocument
@@ -19,7 +21,7 @@
     self = [super init];
     if (self)
     {
-        // Add your subclass-specific initialization here.
+        _modelController = [[CHDocumentModelController alloc] init];
     }
     return self;
 }
@@ -29,38 +31,85 @@
     return YES;
 }
 
-//- (NSString *)windowNibName
-//{
-//    // Override returning the nib file name of the document
-//    // If you need to use a subclass of NSWindowController or if your document supports multiple NSWindowControllers, you should remove this method and override -makeWindowControllers instead.
-//    return @"CHDocument";
-//}
-
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError
 {
-    // Insert code here to write your document to data of the specified type. If outError != NULL, ensure that you create and set an appropriate error when returning nil.
-    // You can also choose to override -fileWrapperOfType:error:, -writeToURL:ofType:error:, or -writeToURL:ofType:forSaveOperation:originalContentsURL:error: instead.
-    [NSException raise:@"UnimplementedMethod" format:@"%@ is unimplemented", NSStringFromSelector(_cmd)];
-    return nil;
+    return [NSKeyedArchiver archivedDataWithRootObject:self.modelController.elementsArray];
 }
 
 - (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError
 {
-    // Insert code here to read your document from the given data of the specified type. If outError != NULL, ensure that you create and set an appropriate error when returning NO.
-    // You can also choose to override -readFromFileWrapper:ofType:error: or -readFromURL:ofType:error: instead.
-    // If you override either of these, you should also override -isEntireFileLoaded to return NO if the contents are lazily loaded.
-    [NSException raise:@"UnimplementedMethod" format:@"%@ is unimplemented", NSStringFromSelector(_cmd)];
-    return YES;
+    BOOL readSuccess = NO;
+    
+    NSArray *modelElements = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    
+    if (modelElements)
+    {
+        readSuccess = YES;
+        
+        for (CHAbstractElement *modelElement in modelElements)
+        {
+            [self.modelController addElement:modelElement];
+        }
+    }
+    
+    return readSuccess;
+}
+
+- (IBAction)exportDocumentToPNG:(id)sender
+{
+    [self exportDocument:self.displayName toType:kUTTypePNG];
+}
+
+- (IBAction)exportDocumentToTIFF:(id)sender
+{
+    [self exportDocument:self.displayName toType:kUTTypeTIFF];
+}
+
+- (IBAction)exportDocumentToJPEG:(id)sender
+{
+    [self exportDocument:self.displayName toType:kUTTypeJPEG];
+}
+
+- (void)exportDocument:(NSString *)name toType:(CFStringRef)type
+{
+    NSWindow *window = self.windowControllers.firstObject.window;
+    
+    CFStringRef newExtension = UTTypeCopyPreferredTagWithClass(type, kUTTagClassFilenameExtension);
+    NSString* newName = [[name stringByDeletingPathExtension] stringByAppendingPathExtension:(NSString*)newExtension];
+    
+    CFRelease(newExtension);
+    
+    NSSavePanel *panel = [NSSavePanel savePanel];
+    [panel setNameFieldStringValue:newName];
+    
+    [panel beginSheetModalForWindow:window completionHandler:^(NSInteger result)
+    {
+        if (result == NSFileHandlingPanelOKButton)
+        {
+            NSURL *theFile = [panel URL];
+            NSData *data = [self.windowControllers.firstObject documentViewRepresentationWithType:type];
+            
+            if (data)
+            {
+                [data writeToURL:theFile atomically:YES];
+            }
+        }
+    }];
 }
 
 - (void)makeWindowControllers
 {
     NSArray *myControllers = [self windowControllers];
-    // If this document displaced a transient document, it will already have been assigned a window controller. If that is not the case, create one.
     if ([myControllers count] == 0)
     {
-        [self addWindowController:[[[CHDocumentWindowController alloc] init] autorelease]];
+        [self addWindowController:[[[CHDocumentWindowController alloc] initWithNibName:@"CHDocument" modelContoller:self.modelController] autorelease]];
     }
+}
+
+- (void)dealloc
+{
+    [_modelController release];
+    [super dealloc];
 }
 
 @end

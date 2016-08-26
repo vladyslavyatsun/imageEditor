@@ -7,7 +7,8 @@
 //
 
 #import <Cocoa/Cocoa.h>
+@class CHDocumentWindowController;
 
 @interface CHInstrumentsPanelController : NSWindowController
-
+@property (nonatomic, assign) CHDocumentWindowController *currentDocumentWindowController;
 @end

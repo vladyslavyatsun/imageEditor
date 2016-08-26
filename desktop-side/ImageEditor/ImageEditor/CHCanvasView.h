@@ -10,6 +10,7 @@
 @class CHAbstractElementRepresentation;
 
 @interface CHCanvasView : NSView
-- (void)addElementOnView:(CHAbstractElementRepresentation *)anElement;
-- (instancetype) initWithElements:(NSArray *)elements;
+
+- (instancetype)initWithElementsRepresentation:(NSArray<CHAbstractElementRepresentation *> *)elementsWithRepresentation;
+
 @end

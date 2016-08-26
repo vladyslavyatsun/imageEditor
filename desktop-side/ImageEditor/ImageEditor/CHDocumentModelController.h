@@ -9,13 +9,16 @@
 #import <Foundation/Foundation.h>
 @class CHAbstractElement;
 
-extern NSString * const kCHDocumentModelDidAddElement;
-extern NSString * const kCHDocumentModelDidRemoveElememt;
+extern NSString * const kCHDocumentModelControllerDidAddElement;
+extern NSString * const kCHDocumentModelControllerDidRemoveElememt;
+extern NSString * const kCHKeyOfDocumentModelControllerNotificationsUserInfo;
 
 @interface CHDocumentModelController : NSObject
 @property (nonatomic, readonly) NSArray<CHAbstractElement *> *elementsArray;
 
 - initWithElementsArray:(NSArray<CHAbstractElement *> *)elementsArray;
+
 - (void)addElement:(CHAbstractElement *)anElement;
 - (void)removeElement:(CHAbstractElement *)anElement;
+
 @end

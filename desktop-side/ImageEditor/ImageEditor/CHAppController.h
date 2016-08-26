@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface CHAppDelegate : NSObject <NSApplicationDelegate>
+@interface CHAppController : NSObject <NSApplicationDelegate>
 
 @end
 

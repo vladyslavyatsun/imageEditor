@@ -9,8 +9,10 @@
 #import "CHDocumentModelController.h"
 #import "CHAbstractElement.h"
 
-NSString * const kCHDocumentModelDidAddElement = @"element added";
-NSString * const kCHDocumentModelDidRemoveElememt = @"element removed";
+NSString * const kCHDocumentModelControllerDidAddElement = @"element added";
+NSString * const kCHDocumentModelControllerDidRemoveElememt = @"element removed";
+NSString * const kCHKeyOfDocumentModelControllerNotificationsUserInfo = @"element";
+
 @interface CHDocumentModelController ()
 @property (nonatomic, retain) NSMutableArray *mElementsArray;
 @end
@@ -35,14 +37,14 @@ NSString * const kCHDocumentModelDidRemoveElememt = @"element removed";
 }
 
 
-- (void)addElement:(CHAbstractElement *)anElement;
+- (void)addElement:(CHAbstractElement *)anElement
 {
     if (anElement)
     {
         [self.mElementsArray addObject:anElement];
-        [[NSNotificationCenter defaultCenter] postNotificationName:kCHDocumentModelDidAddElement
+        [[NSNotificationCenter defaultCenter] postNotificationName:kCHDocumentModelControllerDidAddElement
                                                             object:self
-                                                          userInfo:@{@"element":anElement}];
+                                                          userInfo:@{kCHKeyOfDocumentModelControllerNotificationsUserInfo:anElement}];
     }
 }
 
@@ -50,16 +52,25 @@ NSString * const kCHDocumentModelDidRemoveElememt = @"element removed";
 {
     if ([self.mElementsArray containsObject:anElement])
     {
-        [self.mElementsArray removeObject:anElement];
-        [[NSNotificationCenter defaultCenter] postNotificationName:kCHDocumentModelDidRemoveElememt
+        [[NSNotificationCenter defaultCenter] postNotificationName:kCHDocumentModelControllerDidRemoveElememt
                                                             object:self
-                                                          userInfo:@{@"element":anElement}];
+                                                          userInfo:@{kCHKeyOfDocumentModelControllerNotificationsUserInfo:anElement}];
+        
+        [self.mElementsArray removeObject:anElement];
+        
     }
 }
 
 - (NSArray<CHAbstractElement *> *)elementsArray
 {
     return self.mElementsArray;
+}
+
+
+- (void)dealloc
+{
+    [_mElementsArray release];
+    [super dealloc];
 }
 
 @end

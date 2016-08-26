@@ -7,8 +7,23 @@
 //
 
 #import <Cocoa/Cocoa.h>
+
 @class CHAbstractElement;
+@class CHDocumentModelController;
 
 @interface CHDocumentWindowController : NSWindowController
+typedef NS_ENUM(NSUInteger, CHDrawTool)
+{
+    kCHPointerTool = 0,
+    kCHLineTool = 1,
+    kCHRectangleTool = 2,
+    kCHEllipseTool = 3
+};
+
+- (instancetype)initWithNibName:(NSString *)nibName modelContoller:(CHDocumentModelController *)modelContoller;
+
 - (void)addImageOnViewWithInitialPoint:(NSPoint)aPoint path:(NSString *)aPath;
+- (void)setToolForDrawOnCanvas:(CHDrawTool)drawTool;
+- (NSData *)documentViewRepresentationWithType:(CFStringRef)type;
+
 @end

@@ -5,7 +5,12 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="CHLibraryPanelController"/>
+        <customObject id="-2" userLabel="File's Owner" customClass="CHLibraryPanelController">
+            <connections>
+                <outlet property="libraryTable" destination="e3r-y5-avf" id="Ccd-Hk-VVb"/>
+                <outlet property="window" destination="H75-o4-Jh8" id="PWb-HO-hef"/>
+            </connections>
+        </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <arrayController id="3qx-Pw-dCM">
@@ -14,7 +19,7 @@
             </connections>
         </arrayController>
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="H75-o4-Jh8" customClass="NSPanel">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES"/>
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" utility="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="116" width="333" height="367"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1080"/>
@@ -83,21 +88,23 @@
                                                     <rect key="frame" x="184" y="1" width="148" height="82"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1oZ-Lq-SfH">
-                                                            <rect key="frame" x="0.0" y="65" width="100" height="17"/>
+                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="1oZ-Lq-SfH">
+                                                            <rect key="frame" x="0.0" y="65" width="146" height="17"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="cNf-Ox-3ZF">
                                                                 <font key="font" metaFont="system"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                <connections>
-                                                                    <binding destination="SjB-2X-vwc" name="value" keyPath="objectValue" id="pET-eq-LnZ"/>
-                                                                </connections>
                                                             </textFieldCell>
                                                             <connections>
-                                                                <binding destination="SjB-2X-vwc" name="value" keyPath="objectValue.lastPathComponent" id="zgd-RX-GTD"/>
+                                                                <binding destination="SjB-2X-vwc" name="value" keyPath="objectValue.lastPathComponent" id="7ap-Qt-MdE"/>
                                                             </connections>
                                                         </textField>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="1oZ-Lq-SfH" firstAttribute="centerX" secondItem="SjB-2X-vwc" secondAttribute="centerX" id="GGm-hi-jLZ"/>
+                                                        <constraint firstAttribute="trailing" secondItem="1oZ-Lq-SfH" secondAttribute="trailing" constant="3" id="R5D-Rn-31L"/>
+                                                        <constraint firstItem="1oZ-Lq-SfH" firstAttribute="top" secondItem="SjB-2X-vwc" secondAttribute="top" id="fwn-AP-OU3"/>
+                                                    </constraints>
                                                     <connections>
                                                         <outlet property="textField" destination="1oZ-Lq-SfH" id="RsO-jD-IYj"/>
                                                     </connections>
@@ -107,7 +114,8 @@
                                     </tableColumns>
                                     <connections>
                                         <action trigger="doubleAction" selector="onTableDoubleClickAction:" target="-2" id="gnE-WM-Ssp"/>
-                                        <binding destination="3qx-Pw-dCM" name="content" keyPath="arrangedObjects" id="Lsb-ak-Ce8"/>
+                                        <outlet property="dataSource" destination="-2" id="ZRo-9L-JoY"/>
+                                        <outlet property="delegate" destination="-2" id="dRD-oX-HDg"/>
                                     </connections>
                                 </tableView>
                             </subviews>
@@ -128,12 +136,19 @@
                     </scrollView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="leK-NJ-TtM" firstAttribute="top" secondItem="Dqq-qK-eAb" secondAttribute="top" constant="-1" id="MgA-oc-Btm"/>
+                    <constraint firstAttribute="trailing" secondItem="leK-NJ-TtM" secondAttribute="trailing" constant="-1" id="S7z-ax-QQ8"/>
                     <constraint firstAttribute="trailing" secondItem="leK-NJ-TtM" secondAttribute="trailing" constant="-1" id="VUd-8t-tFs"/>
+                    <constraint firstItem="leK-NJ-TtM" firstAttribute="leading" secondItem="Dqq-qK-eAb" secondAttribute="leading" constant="-1" id="YDM-LI-IbD"/>
+                    <constraint firstAttribute="bottom" secondItem="leK-NJ-TtM" secondAttribute="bottom" constant="10" id="fSc-FF-tvb"/>
                     <constraint firstItem="leK-NJ-TtM" firstAttribute="top" secondItem="Dqq-qK-eAb" secondAttribute="top" constant="-1" id="kge-Zg-MAX"/>
                     <constraint firstItem="leK-NJ-TtM" firstAttribute="leading" secondItem="Dqq-qK-eAb" secondAttribute="leading" constant="-1" id="qmk-Xv-Daf"/>
                     <constraint firstAttribute="bottom" secondItem="leK-NJ-TtM" secondAttribute="bottom" constant="10" id="u3o-dT-sCQ"/>
                 </constraints>
             </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="DGX-UB-vTk"/>
+            </connections>
             <point key="canvasLocation" x="283.5" y="321.5"/>
         </window>
     </objects>

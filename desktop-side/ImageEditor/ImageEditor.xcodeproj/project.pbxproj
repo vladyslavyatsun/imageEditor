@@ -7,11 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8A3DECBD1D676A0E008E0132 /* CHAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3DECBC1D676A0E008E0132 /* CHAppDelegate.m */; };
+		8A3DECBD1D676A0E008E0132 /* CHAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3DECBC1D676A0E008E0132 /* CHAppController.m */; };
 		8A3DECC01D676A0E008E0132 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3DECBF1D676A0E008E0132 /* main.m */; };
 		8A3DECC31D676A0E008E0132 /* CHDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3DECC21D676A0E008E0132 /* CHDocument.m */; };
 		8A3DECC61D676A0E008E0132 /* CHDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3DECC41D676A0E008E0132 /* CHDocument.xib */; };
-		8A3DECC81D676A0E008E0132 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A3DECC71D676A0E008E0132 /* Assets.xcassets */; };
 		8A3DECCB1D676A0E008E0132 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3DECC91D676A0E008E0132 /* MainMenu.xib */; };
 		8A3DECDC1D6784FE008E0132 /* CHAbstractElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3DECDB1D6784FE008E0132 /* CHAbstractElement.m */; };
 		8A3DECDF1D678CA3008E0132 /* CHLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3DECDE1D678CA3008E0132 /* CHLine.m */; };
@@ -24,9 +23,6 @@
 		8A3DECF31D6873B6008E0132 /* CHLibraryPanelController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3DECF11D6873B6008E0132 /* CHLibraryPanelController.xib */; };
 		8A3DECF71D687513008E0132 /* CHInspectorPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3DECF51D687513008E0132 /* CHInspectorPanelController.m */; };
 		8A3DECF81D687513008E0132 /* CHInspectorPanelController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3DECF61D687513008E0132 /* CHInspectorPanelController.xib */; };
-		8A3DED011D688D8C008E0132 /* CHImageLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3DED001D688D8C008E0132 /* CHImageLibrary.m */; };
-		8A3DED041D6890D7008E0132 /* CHStandartImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3DED031D6890D7008E0132 /* CHStandartImage.m */; };
-		8A3DED061D6895AF008E0132 /* image in Resources */ = {isa = PBXBuildFile; fileRef = 8A3DED051D6895AF008E0132 /* image */; };
 		8A3DED0A1D68D774008E0132 /* CHImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3DED091D68D774008E0132 /* CHImage.m */; };
 		8A3DED131D69E57F008E0132 /* CHDocumentWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3DED121D69E57F008E0132 /* CHDocumentWindowController.m */; };
 		8A3DED181D6A4175008E0132 /* CHShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3DED171D6A4175008E0132 /* CHShape.m */; };
@@ -37,17 +33,21 @@
 		8A3DED281D6B21B4008E0132 /* CHEllipseRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3DED271D6B21B4008E0132 /* CHEllipseRepresentation.m */; };
 		8A3DED2B1D6B226C008E0132 /* CHRectangleRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3DED2A1D6B226C008E0132 /* CHRectangleRepresentation.m */; };
 		8A3DED2E1D6B5285008E0132 /* CHDocumentModelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3DED2D1D6B5285008E0132 /* CHDocumentModelController.m */; };
+		8A3DED301D6E172B008E0132 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 8A3DED2F1D6E172B008E0132 /* images */; };
+		8A3DED331D6EE59C008E0132 /* CHCanvasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3DED321D6EE59C008E0132 /* CHCanvasViewController.m */; };
+		8A3DED361D6F1C8A008E0132 /* CHIntegerTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3DED351D6F1C8A008E0132 /* CHIntegerTransformer.m */; };
+		8A3DED3B1D70AF3F008E0132 /* icons in Resources */ = {isa = PBXBuildFile; fileRef = 8A3DED3A1D70AF3F008E0132 /* icons */; };
+		8A3DED491D70B31D008E0132 /* icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A3DED481D70B31D008E0132 /* icons.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8A3DECB81D676A0E008E0132 /* ImageEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		8A3DECBB1D676A0E008E0132 /* CHAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CHAppDelegate.h; sourceTree = "<group>"; };
-		8A3DECBC1D676A0E008E0132 /* CHAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CHAppDelegate.m; sourceTree = "<group>"; };
+		8A3DECBB1D676A0E008E0132 /* CHAppController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CHAppController.h; sourceTree = "<group>"; };
+		8A3DECBC1D676A0E008E0132 /* CHAppController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CHAppController.m; sourceTree = "<group>"; };
 		8A3DECBF1D676A0E008E0132 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8A3DECC11D676A0E008E0132 /* CHDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CHDocument.h; sourceTree = "<group>"; };
 		8A3DECC21D676A0E008E0132 /* CHDocument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CHDocument.m; sourceTree = "<group>"; };
 		8A3DECC51D676A0E008E0132 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CHDocument.xib; sourceTree = "<group>"; };
-		8A3DECC71D676A0E008E0132 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8A3DECCA1D676A0E008E0132 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		8A3DECCC1D676A0E008E0132 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8A3DECDA1D6784FE008E0132 /* CHAbstractElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHAbstractElement.h; sourceTree = "<group>"; };
@@ -69,11 +69,6 @@
 		8A3DECF41D687513008E0132 /* CHInspectorPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHInspectorPanelController.h; sourceTree = "<group>"; };
 		8A3DECF51D687513008E0132 /* CHInspectorPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHInspectorPanelController.m; sourceTree = "<group>"; };
 		8A3DECF61D687513008E0132 /* CHInspectorPanelController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CHInspectorPanelController.xib; sourceTree = "<group>"; };
-		8A3DECFF1D688D8C008E0132 /* CHImageLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHImageLibrary.h; sourceTree = "<group>"; };
-		8A3DED001D688D8C008E0132 /* CHImageLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHImageLibrary.m; sourceTree = "<group>"; };
-		8A3DED021D6890D7008E0132 /* CHStandartImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHStandartImage.h; sourceTree = "<group>"; };
-		8A3DED031D6890D7008E0132 /* CHStandartImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHStandartImage.m; sourceTree = "<group>"; };
-		8A3DED051D6895AF008E0132 /* image */ = {isa = PBXFileReference; lastKnownFileType = folder; path = image; sourceTree = "<group>"; };
 		8A3DED081D68D774008E0132 /* CHImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHImage.h; sourceTree = "<group>"; };
 		8A3DED091D68D774008E0132 /* CHImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHImage.m; sourceTree = "<group>"; };
 		8A3DED111D69E57F008E0132 /* CHDocumentWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHDocumentWindowController.h; sourceTree = "<group>"; };
@@ -94,6 +89,13 @@
 		8A3DED2A1D6B226C008E0132 /* CHRectangleRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHRectangleRepresentation.m; sourceTree = "<group>"; };
 		8A3DED2C1D6B5285008E0132 /* CHDocumentModelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHDocumentModelController.h; sourceTree = "<group>"; };
 		8A3DED2D1D6B5285008E0132 /* CHDocumentModelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHDocumentModelController.m; sourceTree = "<group>"; };
+		8A3DED2F1D6E172B008E0132 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
+		8A3DED311D6EE59C008E0132 /* CHCanvasViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCanvasViewController.h; sourceTree = "<group>"; };
+		8A3DED321D6EE59C008E0132 /* CHCanvasViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHCanvasViewController.m; sourceTree = "<group>"; };
+		8A3DED341D6F1C8A008E0132 /* CHIntegerTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHIntegerTransformer.h; sourceTree = "<group>"; };
+		8A3DED351D6F1C8A008E0132 /* CHIntegerTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHIntegerTransformer.m; sourceTree = "<group>"; };
+		8A3DED3A1D70AF3F008E0132 /* icons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = icons; sourceTree = "<group>"; };
+		8A3DED481D70B31D008E0132 /* icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = icons.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,19 +128,21 @@
 		8A3DECBA1D676A0E008E0132 /* ImageEditor */ = {
 			isa = PBXGroup;
 			children = (
+				8A3DED371D6F1C90008E0132 /* Transformers */,
 				8A3DED071D68962F008E0132 /* Panels */,
 				8A3DECC11D676A0E008E0132 /* CHDocument.h */,
 				8A3DECC21D676A0E008E0132 /* CHDocument.m */,
-				8A3DECBB1D676A0E008E0132 /* CHAppDelegate.h */,
-				8A3DECBC1D676A0E008E0132 /* CHAppDelegate.m */,
+				8A3DECBB1D676A0E008E0132 /* CHAppController.h */,
+				8A3DECBC1D676A0E008E0132 /* CHAppController.m */,
 				8A3DED2C1D6B5285008E0132 /* CHDocumentModelController.h */,
 				8A3DED2D1D6B5285008E0132 /* CHDocumentModelController.m */,
 				8A3DED111D69E57F008E0132 /* CHDocumentWindowController.h */,
 				8A3DED121D69E57F008E0132 /* CHDocumentWindowController.m */,
-				8A3DECD81D678499008E0132 /* Model */,
+				8A3DED311D6EE59C008E0132 /* CHCanvasViewController.h */,
+				8A3DED321D6EE59C008E0132 /* CHCanvasViewController.m */,
 				8A3DECE61D67956D008E0132 /* CHCanvasView.h */,
 				8A3DECE71D67956D008E0132 /* CHCanvasView.m */,
-				8A3DECC71D676A0E008E0132 /* Assets.xcassets */,
+				8A3DECD81D678499008E0132 /* Model */,
 				8A3DECCC1D676A0E008E0132 /* Info.plist */,
 				8A3DECE91D67958F008E0132 /* Resourses */,
 				8A3DECBE1D676A0E008E0132 /* Supporting Files */,
@@ -157,9 +161,9 @@
 		8A3DECD81D678499008E0132 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8A3DECFE1D688D50008E0132 /* Image Library */,
 				8A3DECD91D6784B4008E0132 /* Model Elements */,
 				8A3DED191D6B10F7008E0132 /* View Element Representation */,
+				8A3DED481D70B31D008E0132 /* icons.xcassets */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -186,7 +190,8 @@
 		8A3DECE91D67958F008E0132 /* Resourses */ = {
 			isa = PBXGroup;
 			children = (
-				8A3DED051D6895AF008E0132 /* image */,
+				8A3DED3A1D70AF3F008E0132 /* icons */,
+				8A3DED2F1D6E172B008E0132 /* images */,
 				8A3DECFA1D687E41008E0132 /* xibs */,
 			);
 			name = Resourses;
@@ -202,17 +207,6 @@
 				8A3DECC41D676A0E008E0132 /* CHDocument.xib */,
 			);
 			name = xibs;
-			sourceTree = "<group>";
-		};
-		8A3DECFE1D688D50008E0132 /* Image Library */ = {
-			isa = PBXGroup;
-			children = (
-				8A3DECFF1D688D8C008E0132 /* CHImageLibrary.h */,
-				8A3DED001D688D8C008E0132 /* CHImageLibrary.m */,
-				8A3DED021D6890D7008E0132 /* CHStandartImage.h */,
-				8A3DED031D6890D7008E0132 /* CHStandartImage.m */,
-			);
-			name = "Image Library";
 			sourceTree = "<group>";
 		};
 		8A3DED071D68962F008E0132 /* Panels */ = {
@@ -245,6 +239,15 @@
 				8A3DED2A1D6B226C008E0132 /* CHRectangleRepresentation.m */,
 			);
 			name = "View Element Representation";
+			sourceTree = "<group>";
+		};
+		8A3DED371D6F1C90008E0132 /* Transformers */ = {
+			isa = PBXGroup;
+			children = (
+				8A3DED341D6F1C8A008E0132 /* CHIntegerTransformer.h */,
+				8A3DED351D6F1C8A008E0132 /* CHIntegerTransformer.m */,
+			);
+			name = Transformers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,12 +307,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A3DECC81D676A0E008E0132 /* Assets.xcassets in Resources */,
+				8A3DED3B1D70AF3F008E0132 /* icons in Resources */,
 				8A3DECF81D687513008E0132 /* CHInspectorPanelController.xib in Resources */,
 				8A3DECC61D676A0E008E0132 /* CHDocument.xib in Resources */,
 				8A3DECEE1D687389008E0132 /* CHInstrumentsPanelController.xib in Resources */,
-				8A3DED061D6895AF008E0132 /* image in Resources */,
 				8A3DECCB1D676A0E008E0132 /* MainMenu.xib in Resources */,
+				8A3DED301D6E172B008E0132 /* images in Resources */,
+				8A3DED491D70B31D008E0132 /* icons.xcassets in Resources */,
 				8A3DECF31D6873B6008E0132 /* CHLibraryPanelController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -322,7 +326,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A3DED181D6A4175008E0132 /* CHShape.m in Sources */,
-				8A3DED011D688D8C008E0132 /* CHImageLibrary.m in Sources */,
 				8A3DECC31D676A0E008E0132 /* CHDocument.m in Sources */,
 				8A3DECE51D678DF8008E0132 /* CHEllipse.m in Sources */,
 				8A3DECF71D687513008E0132 /* CHInspectorPanelController.m in Sources */,
@@ -330,16 +333,17 @@
 				8A3DECC01D676A0E008E0132 /* main.m in Sources */,
 				8A3DED2B1D6B226C008E0132 /* CHRectangleRepresentation.m in Sources */,
 				8A3DECED1D687389008E0132 /* CHInstrumentsPanelController.m in Sources */,
+				8A3DED361D6F1C8A008E0132 /* CHIntegerTransformer.m in Sources */,
 				8A3DED221D6B1E01008E0132 /* CHShapeRepresentation.m in Sources */,
 				8A3DED1C1D6B1137008E0132 /* CHAbstractElementRepresentation.m in Sources */,
 				8A3DED0A1D68D774008E0132 /* CHImage.m in Sources */,
 				8A3DECE81D67956D008E0132 /* CHCanvasView.m in Sources */,
 				8A3DECDC1D6784FE008E0132 /* CHAbstractElement.m in Sources */,
-				8A3DECBD1D676A0E008E0132 /* CHAppDelegate.m in Sources */,
+				8A3DED331D6EE59C008E0132 /* CHCanvasViewController.m in Sources */,
+				8A3DECBD1D676A0E008E0132 /* CHAppController.m in Sources */,
 				8A3DED2E1D6B5285008E0132 /* CHDocumentModelController.m in Sources */,
 				8A3DED281D6B21B4008E0132 /* CHEllipseRepresentation.m in Sources */,
 				8A3DECE21D678DD8008E0132 /* CHRectangle.m in Sources */,
-				8A3DED041D6890D7008E0132 /* CHStandartImage.m in Sources */,
 				8A3DED1F1D6B1535008E0132 /* CHImageRepresentation.m in Sources */,
 				8A3DECDF1D678CA3008E0132 /* CHLine.m in Sources */,
 				8A3DECF21D6873B6008E0132 /* CHLibraryPanelController.m in Sources */,

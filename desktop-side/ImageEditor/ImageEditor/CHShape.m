@@ -28,7 +28,7 @@
         [_color release];
         _color = [color retain];
         
-        [[NSNotificationCenter defaultCenter] postNotificationName:kCHElementDidUpdate object:self];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kCHAbstractElementDidUpdate object:self];
     }
     
 }

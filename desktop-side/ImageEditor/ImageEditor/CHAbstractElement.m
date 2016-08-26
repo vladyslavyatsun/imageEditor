@@ -12,7 +12,9 @@
 #import "CHEllipse.h"
 #import "CHImage.h"
 
-NSString * const kCHElementDidUpdate = @"element updated";
+static NSString * const kCHAbstractElementKeyStartPoint = @"start point";
+static NSString * const kCHAbstractElementKeyEndPoint = @"end point";
+static NSString * const kCHAbstractElementDidUpdate = @"element updated";
 @implementation CHAbstractElement
 
 - (instancetype)initWithStartPoint:(NSPoint)startPoint endPoint:(NSPoint)endPoint
@@ -47,13 +49,31 @@ NSString * const kCHElementDidUpdate = @"element updated";
 - (void)setStartPoint:(NSPoint)startPoint
 {
     _startPoint = startPoint;
-    [[NSNotificationCenter defaultCenter] postNotificationName:kCHElementDidUpdate object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCHAbstractElementDidUpdate object:self];
 }
 
 - (void)setEndPoint:(NSPoint)endPoint
 {
     _endPoint = endPoint;
-    [[NSNotificationCenter defaultCenter] postNotificationName:kCHElementDidUpdate object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCHAbstractElementDidUpdate object:self];
+}
+
+#pragma mark - encode & decode
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodePoint:self.startPoint forKey:kCHAbstractElementKeyStartPoint];
+    [aCoder encodePoint:self.endPoint forKey:kCHAbstractElementKeyEndPoint];
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super init];
+    if (self)
+    {
+        _startPoint = [aDecoder decodePointForKey:kCHAbstractElementKeyStartPoint];
+        _endPoint = [aDecoder decodePointForKey:kCHAbstractElementKeyEndPoint];
+    }
+    return self;
 }
 
 - (void)dealloc

@@ -7,9 +7,14 @@
 //
 
 #import "CHInspectorPanelController.h"
+#import "CHAbstractElementRepresentation.h"
 
+//NSString * const kCHSelectedElementPath = @"mainWindow.windowController.canvasViewController.selectedElement";
 @interface CHInspectorPanelController ()
-
+@property (nonatomic, assign) CGFloat originX;
+@property (nonatomic, assign) CGFloat originY;
+@property (nonatomic, assign) CGFloat width;
+@property (nonatomic, assign) CGFloat height;
 @end
 
 @implementation CHInspectorPanelController
@@ -18,10 +23,79 @@
     return [super initWithWindowNibName:@"CHInspectorPanelController"];
 }
 
-- (void)windowDidLoad {
+- (void)windowDidLoad
+{
     [super windowDidLoad];
-    
-    // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+}
+
+
+#pragma mark getters & setters
+
+- (CGFloat)originX
+{
+    return self.selectedElement.rect.origin.x;
+}
+
+- (void)setOriginX:(CGFloat)originX
+{
+    [self.selectedElement moveToPoint:NSMakePoint(originX, self.originY)];
+}
+
+- (CGFloat)originY
+{
+    return self.selectedElement.rect.origin.y;
+}
+
+- (void)setOriginY:(CGFloat)originY
+{
+    [self.selectedElement moveToPoint:NSMakePoint(self.originX, originY)];
+}
+
+- (CGFloat)width
+{
+    return self.selectedElement.rect.size.width;
+}
+
+- (void)setWidth:(CGFloat)width
+{
+    [self.selectedElement setNewWidth:width];
+}
+
+- (CGFloat)height
+{
+    return self.selectedElement.rect.size.height;
+}
+
+- (void)setHeight:(CGFloat)height
+{
+    [self.selectedElement setNewHeight:height];
+}
+
+
++ (NSSet *)keyPathsForValuesAffectingOriginX
+{
+    return [NSSet setWithObject:@"selectedElement.rect"];
+}
+
++ (NSSet *)keyPathsForValuesAffectingOriginY
+{
+    return [NSSet setWithObject:@"selectedElement.rect"];
+}
+
++ (NSSet *)keyPathsForValuesAffectingWidth
+{
+    return [NSSet setWithObject:@"selectedElement.rect"];
+}
+
++ (NSSet *)keyPathsForValuesAffectingHeight
+{
+    return [NSSet setWithObject:@"selectedElement.rect"];
+}
+
+- (void)dealloc
+{
+ //   [NSApp removeObserver:self forKeyPath:kCHSelectedElementPath];
+    [super dealloc];
 }
 
 @end

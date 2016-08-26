@@ -9,8 +9,10 @@
 #import <Cocoa/Cocoa.h>
 @class CHAbstractElement;
 
-@interface CHAbstractElementRepresentation : NSObject
-//@property (nonatomic, assign) CHAbstractElement *modelElement;
+extern NSString * const kCHElementRepresentationDidUpdate;
+
+@interface CHAbstractElementRepresentation : NSObject <NSPasteboardItemDataProvider>
+@property (nonatomic, retain) CHAbstractElement *modelElement;
 @property (nonatomic, assign) NSRect rect;
 @property (nonatomic, getter=isSelected) BOOL select;
 
@@ -20,5 +22,8 @@
 + (CHAbstractElementRepresentation *)elementRepresentationWithModelElement:(CHAbstractElement *)modelElement;
 - (void)draw;
 - (BOOL)hitTest:(NSPoint)aPoint;
-
+- (void)moveToPoint:(NSPoint)aPoint;
+- (void)setNewWidth:(CGFloat)aWidth;
+- (void)setNewHeight:(CGFloat)aHeight;
+- (void)updateModelElement;
 @end

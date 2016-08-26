@@ -7,13 +7,8 @@
 //
 
 #import <Cocoa/Cocoa.h>
-@protocol CHLibraryPanelProtocol
-- (void)addImage:(NSString *)imagePath;
-@end
+@class CHDocumentWindowController;
 
 @interface CHLibraryPanelController : NSWindowController
-{
-    id <CHLibraryPanelProtocol> delegate;
-}
-
+@property (nonatomic, assign) CHDocumentWindowController *currentDocumentWindowController;
 @end
