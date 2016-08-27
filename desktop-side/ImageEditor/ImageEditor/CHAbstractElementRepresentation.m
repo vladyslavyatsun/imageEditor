@@ -37,7 +37,7 @@ NSString * const kCHElementRepresentationDidUpdate = @"element representation up
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(reloadRepresentation:)
                                                      name:kCHAbstractElementDidUpdate
-                                                   object:modelElement];
+                                                   object:_modelElement];
     }
     
     return self;
@@ -134,7 +134,6 @@ NSString * const kCHElementRepresentationDidUpdate = @"element representation up
         }
     }
 }
-
 
 - (void)draw
 {

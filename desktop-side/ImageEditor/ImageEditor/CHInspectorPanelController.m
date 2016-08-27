@@ -9,7 +9,6 @@
 #import "CHInspectorPanelController.h"
 #import "CHAbstractElementRepresentation.h"
 
-//NSString * const kCHSelectedElementPath = @"mainWindow.windowController.canvasViewController.selectedElement";
 @interface CHInspectorPanelController ()
 @property (nonatomic, assign) CGFloat originX;
 @property (nonatomic, assign) CGFloat originY;

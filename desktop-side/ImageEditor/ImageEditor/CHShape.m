@@ -8,6 +8,7 @@
 
 #import "CHShape.h"
 
+NSString * const kCHKeyElementColor = @"element image";
 @implementation CHShape
 
 - (instancetype)initWithStartPoint:(NSPoint)startPoint endPoint:(NSPoint)endPoint color:(NSColor *)color
@@ -32,6 +33,23 @@
     }
     
 }
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [super encodeWithCoder:aCoder];
+    [aCoder encodeObject:self.color forKey:kCHKeyElementColor];
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self)
+    {
+        _color = [[aDecoder decodeObjectForKey:kCHKeyElementColor] copy];
+    }
+    return self;
+}
+
 
 - (void)dealloc
 {

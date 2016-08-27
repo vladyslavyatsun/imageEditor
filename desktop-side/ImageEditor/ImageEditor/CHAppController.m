@@ -14,6 +14,7 @@
 
 NSString * const kCHSelectedElementPath = @"mainWindow.windowController.canvasViewController.selectedElement";
 NSString * const kCHCurrentDocumentPath = @"mainWindow.windowController";
+
 @interface CHAppController ()
 @property (nonatomic, retain) CHLibraryPanelController *libraryPanelController;
 @property (nonatomic, retain) CHInspectorPanelController *inspectorPanelController;
@@ -27,6 +28,7 @@ NSString * const kCHCurrentDocumentPath = @"mainWindow.windowController";
     [NSApp activateIgnoringOtherApps:YES];
     
     [self.libraryPanelController showWindow:self];
+    [self.inspectorPanelController showWindow:self];
     
     [NSApp addObserver:self
             forKeyPath:kCHSelectedElementPath
@@ -59,13 +61,9 @@ NSString * const kCHCurrentDocumentPath = @"mainWindow.windowController";
            [self.inspectorPanelController setSelectedElement:[NSApp valueForKeyPath:kCHSelectedElementPath]];
         }
         
-        if ([keyPath isEqualToString:kCHCurrentDocumentPath] && [self.libraryPanelController.window isVisible])
+        if ([keyPath isEqualToString:kCHCurrentDocumentPath])
         {
             [self.libraryPanelController setCurrentDocumentWindowController:[NSApp valueForKeyPath:kCHCurrentDocumentPath]];
-        }
-        
-        if ([keyPath isEqualToString:kCHCurrentDocumentPath] && [self.instrumentsPanelController.window isVisible])
-        {
             [self.instrumentsPanelController setCurrentDocumentWindowController:[NSApp valueForKeyPath:kCHCurrentDocumentPath]];
         }
     }

@@ -13,6 +13,7 @@
 #import "CHShapeRepresentation.h"
 
 CGFloat const kCHMoveElementStep = 3.0;
+CGFloat const kCHFocusRingThikness = 5.0;
 @interface CHCanvasViewController ()
 @property (atomic, retain) NSMutableArray *elementsWithRepresentation;
 @property (nonatomic, assign) CHCanvasView *canvasView;
@@ -115,6 +116,7 @@ CGFloat const kCHMoveElementStep = 3.0;
     else
     {
         [super mouseDown:event];
+        self.elementLocationInView = curentLocationInView;
     }
     
 }
@@ -124,20 +126,24 @@ CGFloat const kCHMoveElementStep = 3.0;
 {
     NSPoint currentLocationInView = [self.canvasView convertPoint:event.locationInWindow fromView:nil];
     
-    NSPoint toPoint = NSMakePoint(self.selectedElement.rect.origin.x + currentLocationInView.x - self.elementLocationInView.x,
-                                  self.selectedElement.rect.origin.y + currentLocationInView.y - self.elementLocationInView.y);
     
-    
-    if (self.selectedElement && [self.selectedElement hitTest:currentLocationInView])
+    if (!self.drawTool)
     {
-        [self.selectedElement moveToPoint:toPoint];
-    }
-    self.elementLocationInView = currentLocationInView;
+        NSPoint toPoint = NSMakePoint(self.selectedElement.rect.origin.x + currentLocationInView.x - self.elementLocationInView.x,
+                                      self.selectedElement.rect.origin.y + currentLocationInView.y - self.elementLocationInView.y);
     
-}
-
-- (void)mouseUp:(NSEvent *)theEvent
-{
+        if (self.selectedElement)
+        {
+            [self.selectedElement moveToPoint:toPoint];
+        }
+        self.elementLocationInView = currentLocationInView;
+    }
+    else
+    {
+        
+        CHShapeRepresentation *shapeElement = [self.elementsWithRepresentation lastObject];
+        [shapeElement addPoint:currentLocationInView];
+    }
     
 }
 
@@ -184,7 +190,7 @@ CGFloat const kCHMoveElementStep = 3.0;
 #pragma mark select element
 - (void)selectElement:(CHAbstractElementRepresentation *)element
 {
-    [self.canvasView setNeedsDisplayInRect:NSInsetRect(self.selectedElement.rect, -5, -5)];
+    [self.canvasView setNeedsDisplayInRect:NSInsetRect(self.selectedElement.rect, -kCHFocusRingThikness, -kCHFocusRingThikness)];
     
     element.select = YES;
     
@@ -198,7 +204,7 @@ CGFloat const kCHMoveElementStep = 3.0;
     {
         self.selectedElement.select = NO;
         
-        [self.canvasView setNeedsDisplayInRect:NSInsetRect(self.selectedElement.rect, -5, -5)];
+        [self.canvasView setNeedsDisplayInRect:NSInsetRect(self.selectedElement.rect, -kCHFocusRingThikness, -kCHFocusRingThikness)];
         
         self.selectedElement = nil;
         

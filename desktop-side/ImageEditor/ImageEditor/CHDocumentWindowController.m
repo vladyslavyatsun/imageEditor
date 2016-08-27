@@ -301,23 +301,26 @@
 - (void)mouseDown:(NSEvent *)theEvent
 {
     CHAbstractElement *shapeElement;
+    
+     NSPoint currentLocationInView = [self.canvasViewController.view convertPoint:theEvent.locationInWindow fromView:nil];
+    
     switch (self.selectedDrawTool)
     {
         case kCHLineTool:
         {
-            shapeElement = (CHAbstractElement *)[CHAbstractElement lineWithStartPoint:NSZeroPoint endPoint:NSZeroPoint color:nil];
+            shapeElement = (CHAbstractElement *)[CHAbstractElement lineWithStartPoint:currentLocationInView endPoint:currentLocationInView color:[NSColor redColor]];
             [self.modelController addElement:shapeElement];
         }
             break;
         case kCHEllipseTool:
         {
-            shapeElement = (CHAbstractElement *)[CHAbstractElement rectangleWithStartPoint:NSZeroPoint endPoint:NSZeroPoint color:nil];
+            shapeElement = (CHAbstractElement *)[CHAbstractElement ellipseWithStartPoint:currentLocationInView endPoint:currentLocationInView color:[NSColor redColor]];
             [self.modelController addElement:shapeElement];
         }
             break;
         case kCHRectangleTool:
         {
-            shapeElement = (CHAbstractElement *)[CHAbstractElement ellipseWithStartPoint:NSZeroPoint endPoint:NSZeroPoint color:nil];
+            shapeElement = (CHAbstractElement *)[CHAbstractElement rectangleWithStartPoint:currentLocationInView endPoint:currentLocationInView color:[NSColor redColor]];
             [self.modelController addElement:shapeElement];
         }
             break;

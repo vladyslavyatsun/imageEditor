@@ -9,15 +9,10 @@
 #import "CHRectangleRepresentation.h"
 
 @implementation CHRectangleRepresentation
-- (instancetype)initWithModelElement:(CHAbstractElement *)modelElement
+
+- (void)draw
 {
-    self = [super initWithModelElement:modelElement];
-    
-    if (self)
-    {
-        self.bezierPath = [NSBezierPath bezierPathWithRect:self.rect];
-    }
-    
-    return self;
+    self.bezierPath = [NSBezierPath bezierPathWithRect:self.rect];
+    [super draw];
 }
 @end

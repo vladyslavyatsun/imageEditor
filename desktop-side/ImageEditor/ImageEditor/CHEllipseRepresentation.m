@@ -9,15 +9,10 @@
 #import "CHEllipseRepresentation.h"
 
 @implementation CHEllipseRepresentation
-- (instancetype)initWithModelElement:(CHAbstractElement *)modelElement
+
+- (void)draw
 {
-    self = [super initWithModelElement:modelElement];
-    
-    if (self)
-    {
-        self.bezierPath = [NSBezierPath bezierPathWithOvalInRect:self.rect];
-    }
-    
-    return self;
+     self.bezierPath = [NSBezierPath bezierPathWithOvalInRect:self.rect];
+    [super draw];
 }
 @end

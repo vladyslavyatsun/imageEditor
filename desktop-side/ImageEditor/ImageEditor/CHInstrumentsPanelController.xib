@@ -7,6 +7,10 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CHInstrumentsPanelController">
             <connections>
+                <outlet property="ellipseButton" destination="Q9n-Cz-cy3" id="Nej-sm-1A1"/>
+                <outlet property="lineButton" destination="6jX-eI-Lhb" id="MwW-A4-BwT"/>
+                <outlet property="pointerButton" destination="PiF-rK-KKB" id="NKc-nf-6Ma"/>
+                <outlet property="rectangleButton" destination="IpJ-7z-ZEw" id="w1j-7z-VVG"/>
                 <outlet property="window" destination="gXq-uM-keD" id="34b-H5-7AN"/>
             </connections>
         </customObject>
@@ -24,11 +28,11 @@
                     <button translatesAutoresizingMaskIntoConstraints="NO" id="PiF-rK-KKB">
                         <rect key="frame" x="7" y="13" width="45" height="42"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="45" id="lnV-My-bwL"/>
-                            <constraint firstAttribute="height" constant="42" id="nbp-bO-gxm"/>
+                            <constraint firstAttribute="height" constant="42" id="Eed-wo-fvz"/>
+                            <constraint firstAttribute="width" constant="45" id="XD5-7j-Xkb"/>
                         </constraints>
-                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="mouse_pointer" imagePosition="only" alignment="center" state="on" imageScaling="proportionallyUpOrDown" inset="2" id="qTt-sn-tdR">
-                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="mouse_pointer" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="qTt-sn-tdR">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
@@ -36,55 +40,55 @@
                         </connections>
                     </button>
                     <button translatesAutoresizingMaskIntoConstraints="NO" id="6jX-eI-Lhb">
-                        <rect key="frame" x="133" y="16" width="43" height="39"/>
+                        <rect key="frame" x="133" y="13" width="43" height="42"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="39" id="0b1-Lk-Ri7"/>
-                            <constraint firstAttribute="width" constant="43" id="tS7-ox-iFB"/>
+                            <constraint firstAttribute="width" constant="43" id="cwO-m1-CRL"/>
                         </constraints>
-                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="line" imagePosition="only" alignment="center" state="on" imageScaling="proportionallyUpOrDown" inset="2" id="TsG-c3-gci">
-                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="line" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="TsG-c3-gci">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
                             <action selector="selectLine:" target="-2" id="gS8-8N-hKc"/>
                         </connections>
                     </button>
-                    <button translatesAutoresizingMaskIntoConstraints="NO" id="Q9n-Cz-cy3">
-                        <rect key="frame" x="67" y="13" width="46" height="43"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="46" id="TvH-ee-rXJ"/>
-                            <constraint firstAttribute="height" constant="43" id="qXH-er-G2M"/>
-                        </constraints>
-                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="006.Ellipse-128" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="zFo-nj-lHK">
-                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="selectEllipse:" target="-2" id="3IY-sV-ArN"/>
-                        </connections>
-                    </button>
                     <button translatesAutoresizingMaskIntoConstraints="NO" id="IpJ-7z-ZEw">
                         <rect key="frame" x="193" y="13" width="46" height="43"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="46" id="1cO-xQ-6AK"/>
-                            <constraint firstAttribute="height" constant="43" id="aYF-Et-EZc"/>
+                            <constraint firstAttribute="width" constant="46" id="Nj1-ux-aLk"/>
                         </constraints>
-                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="rect" imagePosition="only" alignment="center" state="on" imageScaling="proportionallyUpOrDown" inset="2" id="vbg-u9-WYe">
-                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="rect" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="vbg-u9-WYe">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
                             <action selector="selectRectangle:" target="-2" id="bRW-iL-8YB"/>
                         </connections>
                     </button>
+                    <button translatesAutoresizingMaskIntoConstraints="NO" id="Q9n-Cz-cy3">
+                        <rect key="frame" x="67" y="12" width="46" height="43"/>
+                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="006.Ellipse-128" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="zFo-nj-lHK">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="selectEllipse:" target="-2" id="3IY-sV-ArN"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Q9n-Cz-cy3" firstAttribute="top" secondItem="PiF-rK-KKB" secondAttribute="top" constant="-1" id="2lW-PW-9Dh"/>
-                    <constraint firstItem="Q9n-Cz-cy3" firstAttribute="top" secondItem="nKm-UY-3iZ" secondAttribute="top" constant="2" id="MXP-DR-NYP"/>
+                    <constraint firstItem="Q9n-Cz-cy3" firstAttribute="top" secondItem="PiF-rK-KKB" secondAttribute="top" id="2lW-PW-9Dh"/>
+                    <constraint firstItem="IpJ-7z-ZEw" firstAttribute="bottom" secondItem="PiF-rK-KKB" secondAttribute="bottom" id="COE-gM-dba"/>
+                    <constraint firstItem="Q9n-Cz-cy3" firstAttribute="top" secondItem="nKm-UY-3iZ" secondAttribute="top" constant="3" id="MXP-DR-NYP"/>
                     <constraint firstItem="6jX-eI-Lhb" firstAttribute="leading" secondItem="Q9n-Cz-cy3" secondAttribute="trailing" constant="20" id="Np0-dv-64o"/>
+                    <constraint firstItem="PiF-rK-KKB" firstAttribute="centerY" secondItem="Q9n-Cz-cy3" secondAttribute="centerY" id="Z8d-mM-Rzb"/>
                     <constraint firstItem="Q9n-Cz-cy3" firstAttribute="leading" secondItem="PiF-rK-KKB" secondAttribute="trailing" constant="15" id="Zlj-dd-p0J"/>
                     <constraint firstItem="IpJ-7z-ZEw" firstAttribute="top" secondItem="PiF-rK-KKB" secondAttribute="top" constant="-1" id="asa-E8-g7i"/>
+                    <constraint firstItem="IpJ-7z-ZEw" firstAttribute="bottom" secondItem="6jX-eI-Lhb" secondAttribute="bottom" id="av9-54-YTE"/>
                     <constraint firstItem="PiF-rK-KKB" firstAttribute="leading" secondItem="nKm-UY-3iZ" secondAttribute="leading" constant="7" id="d2v-BQ-xYB"/>
+                    <constraint firstAttribute="bottom" secondItem="IpJ-7z-ZEw" secondAttribute="bottom" constant="13" id="eMo-FA-T5l"/>
+                    <constraint firstItem="IpJ-7z-ZEw" firstAttribute="leading" secondItem="6jX-eI-Lhb" secondAttribute="trailing" constant="17" id="sPO-cG-Y0a"/>
+                    <constraint firstAttribute="trailing" secondItem="IpJ-7z-ZEw" secondAttribute="trailing" constant="10" id="tDh-En-IWP"/>
                     <constraint firstItem="IpJ-7z-ZEw" firstAttribute="leading" secondItem="6jX-eI-Lhb" secondAttribute="trailing" constant="17" id="wXh-Gr-oWc"/>
                     <constraint firstItem="6jX-eI-Lhb" firstAttribute="top" secondItem="PiF-rK-KKB" secondAttribute="top" id="zhe-tK-spn"/>
                 </constraints>

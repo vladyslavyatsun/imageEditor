@@ -10,6 +10,8 @@
 #import "CHShape.h"
 
 @implementation CHShapeRepresentation
+
+
 - (instancetype)initWithModelElement:(CHAbstractElement *)modelElement
 {
     self = [super initWithModelElement:modelElement];
@@ -17,7 +19,7 @@
     if (self)
     {
         _color = ((CHShape *)modelElement).color;
-        _bezierPath = [[NSBezierPath bezierPath] retain];
+        _initialPoint = self.modelElement.startPoint;
     }
     return self;
 }
@@ -28,17 +30,57 @@
     CHShape *modelElement = notification.object;
     
     self.color = modelElement.color;
+    
+    [super reloadRepresentation:notification];
 }
 
-- (BOOL)hitTest:(NSPoint)aPoint
+- (void)addPoint:(NSPoint)aPoint
 {
-    return [self.bezierPath containsPoint:aPoint];
+        NSPoint newStartPoint = self.modelElement.startPoint;
+        NSPoint newEndPoint = self.modelElement.endPoint;
+        
+        
+        if (aPoint.x >= self.initialPoint.x)
+        {
+            newStartPoint.x = self.initialPoint.x;
+            newEndPoint.x = aPoint.x;
+        }
+        else
+        {
+            newStartPoint.x = aPoint.x;
+            newEndPoint.x = self.initialPoint.x;
+        }
+    
+        if (aPoint.y >= self.initialPoint.y)
+        {
+            newStartPoint.y = self.initialPoint.y;
+            newEndPoint.y = aPoint.y;
+        }
+        else
+        {
+            newStartPoint.y = aPoint.y;
+            newEndPoint.y = self.initialPoint.y;
+        }
+    
+        [self.modelElement setStartPoint:newStartPoint];
+        [self.modelElement setEndPoint:newEndPoint];
 }
 
 - (void)draw
 {
     [self.color set];
-    [self.bezierPath stroke];
+
+    if ([self isSelected])
+    {
+        [NSGraphicsContext saveGraphicsState];
+        NSSetFocusRingStyle(NSFocusRingAbove);
+        [self.bezierPath stroke];
+        [NSGraphicsContext restoreGraphicsState];
+    }
+    else
+    {
+        [self.bezierPath stroke];
+    }
 }
 
 - (void)dealloc
