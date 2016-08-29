@@ -15,7 +15,7 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <arrayController id="3qx-Pw-dCM">
             <connections>
-                <binding destination="-2" name="contentArray" keyPath="self.mImagePathArray" id="C18-T2-pNZ"/>
+                <binding destination="-2" name="contentArray" keyPath="self.libraryModelController.libraryImages" id="wJi-QC-XuU"/>
             </connections>
         </arrayController>
         <window title="Library" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="H75-o4-Jh8" customClass="NSPanel">
@@ -61,7 +61,7 @@
                                                             <rect key="frame" x="3" y="3" width="173" height="76"/>
                                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="ALe-TC-Zf0"/>
                                                             <connections>
-                                                                <binding destination="uFf-qy-Vc1" name="valuePath" keyPath="objectValue" id="WHK-53-g9i"/>
+                                                                <binding destination="uFf-qy-Vc1" name="valueURL" keyPath="objectValue.url" id="021-DM-3rD"/>
                                                             </connections>
                                                         </imageView>
                                                     </subviews>
@@ -96,7 +96,12 @@
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                             <connections>
-                                                                <binding destination="SjB-2X-vwc" name="value" keyPath="objectValue.lastPathComponent" id="7ap-Qt-MdE"/>
+                                                                <binding destination="SjB-2X-vwc" name="editable" keyPath="objectValue.readOnly" id="qCj-C6-Arj">
+                                                                    <dictionary key="options">
+                                                                        <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                                    </dictionary>
+                                                                </binding>
+                                                                <binding destination="SjB-2X-vwc" name="value" keyPath="objectValue.title" id="bWc-7o-oWY"/>
                                                             </connections>
                                                         </textField>
                                                     </subviews>
@@ -114,6 +119,7 @@
                                     </tableColumns>
                                     <connections>
                                         <action trigger="doubleAction" selector="onTableDoubleClickAction:" target="-2" id="gnE-WM-Ssp"/>
+                                        <binding destination="3qx-Pw-dCM" name="content" keyPath="arrangedObjects" id="UPL-ug-Z18"/>
                                         <outlet property="dataSource" destination="-2" id="ZRo-9L-JoY"/>
                                         <outlet property="delegate" destination="-2" id="dRD-oX-HDg"/>
                                     </connections>

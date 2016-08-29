@@ -170,7 +170,9 @@ NSString * const kCHServerConnectorHeaderContentType = @"Content-Type";
                                               [key release];
                                               
                                               callback(indexes);
+                        
                                           }
+                                          [indexes release];
                                       }
                                   }];
     

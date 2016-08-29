@@ -20,6 +20,9 @@
 
 
 NSString * const kCHElementRepresentationDidUpdate = @"element representation update";
+@interface CHAbstractElementRepresentation()
+@property (nonatomic, assign) NSPoint oldPointLocation;
+@end
 @implementation CHAbstractElementRepresentation 
 
 - (instancetype)initWithModelElement:(CHAbstractElement *)modelElement
@@ -90,30 +93,23 @@ NSString * const kCHElementRepresentationDidUpdate = @"element representation up
 - (void)moveToPoint:(NSPoint)aPoint
 {
     self.rect = NSMakeRect(aPoint.x, aPoint.y, self.rect.size.width, self.rect.size.height);
-    
     [self updateModelElement];
-    
     [self didChangeValueForKey:@"rect"];
 }
 
 - (void)setNewWidth:(CGFloat)aWidth
 {
     self.rect = NSMakeRect(self.rect.origin.x, self.rect.origin.y, aWidth, self.rect.size.height);
-    
     [self updateModelElement];
-    
     [self didChangeValueForKey:@"rect"];
 }
 
 - (void)setNewHeight:(CGFloat)aHeight
 {
     self.rect = NSMakeRect(self.rect.origin.x, self.rect.origin.y, self.rect.size.width, aHeight);
-    
     [self updateModelElement];
-
     [self didChangeValueForKey:@"rect"];
 }
-
 
 
 - (void)updateModelElement

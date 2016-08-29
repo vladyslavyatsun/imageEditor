@@ -35,9 +35,16 @@
     return self.selectedElement.rect.origin.x;
 }
 
+- (void)setOriginX:(CGFloat)x forElement:(CHAbstractElementRepresentation *)element
+{
+    [[self.undoManager prepareWithInvocationTarget:self] setOriginX:element.rect.origin.x forElement:self.selectedElement];
+    
+    [element moveToPoint:NSMakePoint(x, element.rect.origin.y)];
+}
+
 - (void)setOriginX:(CGFloat)originX
 {
-    [self.selectedElement moveToPoint:NSMakePoint(originX, self.originY)];
+    [self setOriginX:originX forElement:self.selectedElement];
 }
 
 - (CGFloat)originY
@@ -45,9 +52,16 @@
     return self.selectedElement.rect.origin.y;
 }
 
+- (void)setOriginY:(CGFloat)y forElement:(CHAbstractElementRepresentation *)element
+{
+    [[self.undoManager prepareWithInvocationTarget:self] setOriginY:element.rect.origin.y forElement:self.selectedElement];
+    
+    [element moveToPoint:NSMakePoint(element.rect.origin.x, y)];
+}
+
 - (void)setOriginY:(CGFloat)originY
 {
-    [self.selectedElement moveToPoint:NSMakePoint(self.originX, originY)];
+    [self setOriginY:originY forElement:self.selectedElement];
 }
 
 - (CGFloat)width
@@ -55,9 +69,16 @@
     return self.selectedElement.rect.size.width;
 }
 
+- (void)setWidth:(CGFloat)width forElement:(CHAbstractElementRepresentation *)element
+{
+    [[self.undoManager prepareWithInvocationTarget:self] setWidth:element.rect.size.width forElement:self.selectedElement];
+    
+    [element setNewWidth:width];
+}
+
 - (void)setWidth:(CGFloat)width
 {
-    [self.selectedElement setNewWidth:width];
+    [self setWidth:width forElement:self.selectedElement];
 }
 
 - (CGFloat)height
@@ -65,9 +86,16 @@
     return self.selectedElement.rect.size.height;
 }
 
+- (void)setHeight:(CGFloat)height forElement:(CHAbstractElementRepresentation *)element
+{
+    [[self.undoManager prepareWithInvocationTarget:self] setHeight:element.rect.size.height forElement:self.selectedElement];
+    
+    [element setNewWidth:height];
+}
+
 - (void)setHeight:(CGFloat)height
 {
-    [self.selectedElement setNewHeight:height];
+    [self setHeight:height forElement:self.selectedElement];
 }
 
 
@@ -89,6 +117,11 @@
 + (NSSet *)keyPathsForValuesAffectingHeight
 {
     return [NSSet setWithObject:@"selectedElement.rect"];
+}
+
+- (NSUndoManager *)undoManager
+{
+    return [NSDocumentController sharedDocumentController].currentDocument.undoManager;
 }
 
 - (void)dealloc

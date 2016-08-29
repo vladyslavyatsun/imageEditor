@@ -13,10 +13,10 @@
 #import "CHDocumentModelController.h"
 #import "CHShape.h"
 
-#warning rename that
-NSString *const kIECanvasViewControllerUndoManagerActionAdding = @"Adding";
-NSString *const kIECanvasViewControllerUndoManagerActionRemoving = @"Removing";
-NSString *const kIECanvasViewControllerUndoManagerActionCopying = @"Copying";
+
+NSString * const kCHDocumentWindowControllerUndoManagerActionAdding = @"Adding";
+NSString * const kCHDocumentWindowControllerUndoManagerActionRemoving = @"Removing";
+NSString * const kCHDocumentWindowUndoManagerActionCopying = @"Copying";
 
 @interface CHDocumentWindowController ()
 @property (nonatomic, retain) CHCanvasViewController *canvasViewController;
@@ -90,15 +90,15 @@ NSString *const kIECanvasViewControllerUndoManagerActionCopying = @"Copying";
 
 
 
-- (void)addImageOnViewWithInitialPoint:(NSPoint)aPoint path:(NSString *)aPath
+- (void)addImageOnViewWithInitialPoint:(NSPoint)aPoint path:(NSURL *)aURL
 {
-    NSImage *image = [[[NSImage alloc] initWithContentsOfFile:aPath] autorelease];
+    NSImage *image = [[[NSImage alloc] initWithContentsOfURL:aURL] autorelease];
     
     NSPoint endPoint = NSMakePoint(image.size.width + aPoint.x, image.size.height + aPoint.y);
     
     CHAbstractElement *element = (CHAbstractElement *)[CHAbstractElement imageWithStartPoint:aPoint endPoint:endPoint image:image];
     
-    [self.modelController addElement:element];
+    [self addAbstractElement:element withUndoManagerAction:kCHDocumentWindowControllerUndoManagerActionAdding];
 }
 
 #pragma mark manage canvas view
@@ -221,7 +221,7 @@ NSString *const kIECanvasViewControllerUndoManagerActionCopying = @"Copying";
         
         CHAbstractElement *newImage = (CHAbstractElement *)[CHAbstractElement imageWithStartPoint:startPoint endPoint:endPoint image:image];
         
-        [self.modelController addElement:newImage];
+        [self addAbstractElement:newImage withUndoManagerAction:kCHDocumentWindowControllerUndoManagerActionAdding];
     }
     
     [images release];
@@ -235,9 +235,11 @@ NSString *const kIECanvasViewControllerUndoManagerActionCopying = @"Copying";
 {
     if (self.selectedElement)
     {
+#warning
+        
         CHAbstractElement *modelElement = self.selectedElement.modelElement;
         
-        [self.modelController removeElement:modelElement];
+        [self removeAbstractElement:modelElement withUndoManagerAction:kCHDocumentWindowControllerUndoManagerActionRemoving];
     }
 }
 
@@ -291,11 +293,11 @@ NSString *const kIECanvasViewControllerUndoManagerActionCopying = @"Copying";
         
         if (data)
         {
-            CHAbstractElement *item = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+            CHAbstractElement *element = [NSKeyedUnarchiver unarchiveObjectWithData:data];
             
-            if (item)
+            if (element)
             {
-                [self.modelController addElement:item];
+                [self addAbstractElement:element withUndoManagerAction:kCHDocumentWindowUndoManagerActionCopying];
             }
         }
     }
@@ -314,19 +316,19 @@ NSString *const kIECanvasViewControllerUndoManagerActionCopying = @"Copying";
         case kCHLineTool:
         {
             shapeElement = (CHAbstractElement *)[CHAbstractElement lineWithStartPoint:currentLocationInView endPoint:currentLocationInView color:[NSColor redColor]];
-            [self.modelController addElement:shapeElement];
+            [self addAbstractElement:shapeElement withUndoManagerAction:kCHDocumentWindowControllerUndoManagerActionAdding];
         }
             break;
         case kCHEllipseTool:
         {
             shapeElement = (CHAbstractElement *)[CHAbstractElement ellipseWithStartPoint:currentLocationInView endPoint:currentLocationInView color:[NSColor redColor]];
-            [self.modelController addElement:shapeElement];
+            [self addAbstractElement:shapeElement withUndoManagerAction:kCHDocumentWindowControllerUndoManagerActionAdding];
         }
             break;
         case kCHRectangleTool:
         {
             shapeElement = (CHAbstractElement *)[CHAbstractElement rectangleWithStartPoint:currentLocationInView endPoint:currentLocationInView color:[NSColor redColor]];
-            [self.modelController addElement:shapeElement];
+            [self addAbstractElement:shapeElement withUndoManagerAction:kCHDocumentWindowControllerUndoManagerActionAdding];
         }
             break;
         default:
@@ -340,7 +342,7 @@ NSString *const kIECanvasViewControllerUndoManagerActionCopying = @"Copying";
 {
     if (element)
     {
-        [[self.undoManager prepareWithInvocationTarget:self] removeAbstractElement:element withUndoManagerAction:kIECanvasViewControllerUndoManagerActionRemoving];
+        [[self.undoManager prepareWithInvocationTarget:self] removeAbstractElement:element withUndoManagerAction:kCHDocumentWindowControllerUndoManagerActionRemoving];
         [self.modelController addElement:element];
         
         if (!self.undoManager.isUndoing)
@@ -359,7 +361,7 @@ NSString *const kIECanvasViewControllerUndoManagerActionCopying = @"Copying";
             self.selectedElement = nil;
         }
         
-        [[self.undoManager prepareWithInvocationTarget:self] addAbstractElement:element withUndoManagerAction:kIECanvasViewControllerUndoManagerActionAdding];
+        [[self.undoManager prepareWithInvocationTarget:self] addAbstractElement:element withUndoManagerAction:kCHDocumentWindowControllerUndoManagerActionAdding];
         [self.modelController removeElement:element];
         
         if (!self.undoManager.isUndoing)
@@ -369,6 +371,10 @@ NSString *const kIECanvasViewControllerUndoManagerActionCopying = @"Copying";
     }
 }
 
+- (NSUndoManager *)undoManager
+{
+    return [NSDocumentController sharedDocumentController].currentDocument.undoManager;
+}
 
 #pragma mark document representation
 - (NSData *)documentViewRepresentationWithType:(CFStringRef)type

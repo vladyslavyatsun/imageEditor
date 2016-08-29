@@ -52,12 +52,6 @@ NSString * const kCHCurrentDocumentPath = @"mainWindow.windowController";
     
     
     [self.serverConnector logInWithName:@"test" password:@"test1234"];
-    //[self.serverConnector indexesOfDocumentsCallback:nil];
-    //[self.serverConnector previewDataWithIndex:2 callback:nil];
-    //[self.serverConnector downloadDocumentWithIndex:2];
-    
-    
-    
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification

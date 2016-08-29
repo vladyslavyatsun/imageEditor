@@ -12,16 +12,15 @@
 #import "CHAbstractElement.h"
 #import "CHShapeRepresentation.h"
 
-#warning rename const
-
-NSString *const kIECanvasViewControllerUndoManagerActionMoving = @"Moving";
+NSString * const kCHCanvasViewControllerUndoManagerActionMoving = @"Moving";
 CGFloat const kCHMoveElementStep = 3.0;
 CGFloat const kCHFocusRingThikness = 5.0;
 @interface CHCanvasViewController ()
 @property (atomic, retain) NSMutableArray *elementsWithRepresentation;
 @property (nonatomic, assign) CHCanvasView *canvasView;
 @property (atomic, assign) CHAbstractElementRepresentation *selectedElement;
-@property (nonatomic, assign) NSPoint elementLocationInView;
+@property (nonatomic, assign) NSPoint elementLocationInViewOnMouseDrag;
+@property (nonatomic, assign) NSPoint elmentLocationInViewOnMouseDown;
 @end
 
 @implementation CHCanvasViewController
@@ -101,7 +100,7 @@ CGFloat const kCHFocusRingThikness = 5.0;
 - (void)mouseDown:(NSEvent *)event
 {
     NSPoint curentLocationInView = [self.canvasView convertPoint:event.locationInWindow fromView:nil];
-    
+    self.elementLocationInViewOnMouseDrag = curentLocationInView;
     [self unselectElement];
     
     if (!self.drawTool)
@@ -110,7 +109,8 @@ CGFloat const kCHFocusRingThikness = 5.0;
         {
             if([element hitTest:curentLocationInView])
             {
-                self.elementLocationInView = curentLocationInView;
+                self.elmentLocationInViewOnMouseDown = curentLocationInView;
+                
                 [self selectElement:element];
                 break;
             }
@@ -119,7 +119,6 @@ CGFloat const kCHFocusRingThikness = 5.0;
     else
     {
         [super mouseDown:event];
-        self.elementLocationInView = curentLocationInView;
     }
     
 }
@@ -133,21 +132,20 @@ CGFloat const kCHFocusRingThikness = 5.0;
     
     if (!self.drawTool)
     {
-        NSPoint toPoint = NSMakePoint(self.selectedElement.rect.origin.x + currentLocationInView.x - self.elementLocationInView.x,
-                                      self.selectedElement.rect.origin.y + currentLocationInView.y - self.elementLocationInView.y);
+        NSPoint toPoint = NSMakePoint(self.selectedElement.rect.origin.x + currentLocationInView.x - self.elementLocationInViewOnMouseDrag.x,
+                                      self.selectedElement.rect.origin.y + currentLocationInView.y - self.elementLocationInViewOnMouseDrag.y);
         
         dirtyRect = NSInsetRect(self.selectedElement.rect, -kCHFocusRingThikness, -kCHFocusRingThikness);
         
         if (self.selectedElement)
         {
             [self.selectedElement moveToPoint:toPoint];
+            
         }
-        self.elementLocationInView = currentLocationInView;
+        self.elementLocationInViewOnMouseDrag = currentLocationInView;
     }
     else
     {
-#warning -- review this
-        
         CHShapeRepresentation *shapeElement = [self.elementsWithRepresentation lastObject];
         dirtyRect = shapeElement.rect;
         [shapeElement addPoint:currentLocationInView];
@@ -157,6 +155,21 @@ CGFloat const kCHFocusRingThikness = 5.0;
     
 }
 
+- (void)mouseUp:(NSEvent *)theEvent
+{
+    NSPoint currentLocationInView = [self.canvasView convertPoint:theEvent.locationInWindow fromView:nil];
+    
+    NSPoint newPoint = NSMakePoint(self.selectedElement.rect.origin.x + currentLocationInView.x - self.elementLocationInViewOnMouseDrag.x,
+                                   self.selectedElement.rect.origin.y + currentLocationInView.y - self.elementLocationInViewOnMouseDrag.y);
+    
+    if (self.selectedElement)
+    {
+        NSPoint oldPoint = NSMakePoint(self.selectedElement.rect.origin.x - currentLocationInView.x + self.elmentLocationInViewOnMouseDown.x,
+                                       self.selectedElement.rect.origin.y - currentLocationInView.y + self.elmentLocationInViewOnMouseDown.y);
+
+        [[self.undoManager prepareWithInvocationTarget:self] moveElement:self.selectedElement backFromPoint:newPoint toPoint:oldPoint];
+    }
+}
 
 #pragma mark - key events
 
@@ -167,7 +180,7 @@ CGFloat const kCHFocusRingThikness = 5.0;
     
     if (!self.undoManager.isUndoing)
     {
-        [self.undoManager setActionName:kIECanvasViewControllerUndoManagerActionMoving];
+        [self.undoManager setActionName:kCHCanvasViewControllerUndoManagerActionMoving];
     }
     
     if (self.selectedElement)
@@ -179,6 +192,13 @@ CGFloat const kCHFocusRingThikness = 5.0;
 
 - (IBAction)moveDown:(id)sender
 {
+    [self.undoManager registerUndoWithTarget:self selector:@selector(moveUp:) object:nil];
+    
+    if (!self.undoManager.isUndoing)
+    {
+        [self.undoManager setActionName:kCHCanvasViewControllerUndoManagerActionMoving];
+    }
+    
     if (self.selectedElement)
     {
         NSPoint toPoint = NSMakePoint(self.selectedElement.rect.origin.x, self.selectedElement.rect.origin.y + kCHMoveElementStep);
@@ -188,6 +208,13 @@ CGFloat const kCHFocusRingThikness = 5.0;
 
 - (IBAction)moveLeft:(id)sender
 {
+    [self.undoManager registerUndoWithTarget:self selector:@selector(moveRight:) object:nil];
+    
+    if (!self.undoManager.isUndoing)
+    {
+        [self.undoManager setActionName:kCHCanvasViewControllerUndoManagerActionMoving];
+    }
+    
     if (self.selectedElement)
     {
         NSPoint toPoint = NSMakePoint(self.selectedElement.rect.origin.x - kCHMoveElementStep, self.selectedElement.rect.origin.y);
@@ -197,6 +224,13 @@ CGFloat const kCHFocusRingThikness = 5.0;
 
 - (IBAction)moveRight:(id)sender
 {
+    [self.undoManager registerUndoWithTarget:self selector:@selector(moveLeft:) object:nil];
+    
+    if (!self.undoManager.isUndoing)
+    {
+        [self.undoManager setActionName:kCHCanvasViewControllerUndoManagerActionMoving];
+    }
+    
     if (self.selectedElement)
     {
         NSPoint toPoint = NSMakePoint(self.selectedElement.rect.origin.x + kCHMoveElementStep, self.selectedElement.rect.origin.y);
@@ -220,21 +254,31 @@ CGFloat const kCHFocusRingThikness = 5.0;
     if (self.selectedElement)
     {
         self.selectedElement.select = NO;
-        
         [self.canvasView setNeedsDisplayInRect:NSInsetRect(self.selectedElement.rect, -kCHFocusRingThikness, -kCHFocusRingThikness)];
-        
         self.selectedElement = nil;
-        
     }
 }
 
 - (void)redrawView:(NSNotification *)notification
 {
-    CHAbstractElementRepresentation *element = notification.object;
-    NSRect dirtyRect = NSInsetRect(element.rect, -kCHFocusRingThikness, -kCHFocusRingThikness);
-    [self.canvasView setNeedsDisplayInRect:dirtyRect];
+    [self.canvasView setNeedsDisplay:YES];
 }
 
+#pragma mark undo/redo
+
+- (void)moveElement:(CHAbstractElementRepresentation *)element backFromPoint:(NSPoint)from toPoint:(NSPoint)to
+{
+    [[self.undoManager prepareWithInvocationTarget:self] moveElement:element backFromPoint:to toPoint:from];
+    
+    if (!self.undoManager.isUndoing)
+    {
+        [self.undoManager setActionName:kCHCanvasViewControllerUndoManagerActionMoving];
+    }
+    
+    [self.canvasView setNeedsDisplayInRect:NSInsetRect(element.rect, -kCHFocusRingThikness, -kCHFocusRingThikness)];
+    
+    [element moveToPoint:to];
+}
 
 
 - (NSUndoManager *)undoManager
@@ -246,9 +290,7 @@ CGFloat const kCHFocusRingThikness = 5.0;
 - (NSBitmapImageRep *)viewToBitmapImageRepresentation
 {
     CHAbstractElementRepresentation *element = self.selectedElement;
-    
     [self unselectElement];
-    
     [self.canvasView lockFocus];
     NSBitmapImageRep *imageRepresentation = [[[NSBitmapImageRep alloc] initWithFocusedViewRect:self.canvasView.bounds] autorelease];
     [self.canvasView cacheDisplayInRect:self.canvasView.bounds toBitmapImageRep:imageRepresentation];

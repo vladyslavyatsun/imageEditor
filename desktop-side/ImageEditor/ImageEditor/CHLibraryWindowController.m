@@ -8,18 +8,12 @@
 
 #import "CHLibraryWindowController.h"
 #import "CHDocumentWindowController.h"
+#import "CHLibraryModelController.h"
+#import "CHLibraryImage.h"
 
-
-#warning ----1
-#import "CHServerConnector.h"
-
-NSString * const kCHResourcesDirectoryName = @"images";
-NSString * const kCHLibraryTableImageCellIdentifier = @"image";
-NSString * const kCHLibraryTableTitleCellIdentifier = @"title";
-NSString * const kCHLibraryImageType = @"png";
 @interface CHLibraryWindowController ()<NSTableViewDataSource, NSTableViewDelegate>
 @property (assign) IBOutlet NSTableView *libraryTable;
-@property (nonatomic, retain) NSMutableArray<NSString *> *mImagePathArray;
+@property (nonatomic, retain) CHLibraryModelController *libraryModelController;
 @end
 
 @implementation CHLibraryWindowController
@@ -30,8 +24,7 @@ NSString * const kCHLibraryImageType = @"png";
     
     if (self)
     {
-        _mImagePathArray = [[NSMutableArray alloc] init];
-        [self loadImages];
+        _libraryModelController = [[CHLibraryModelController alloc] init];
     }
     return self;
 }
@@ -39,45 +32,54 @@ NSString * const kCHLibraryImageType = @"png";
 - (void)windowDidLoad
 {
     [super windowDidLoad];
-    
-    [self.window registerForDraggedTypes:[NSArray arrayWithObject:NSFilenamesPboardType]];
-    
+    [self.libraryModelController loadImagesWithTypes:[NSImage imageTypes]];
+    [self.libraryTable registerForDraggedTypes:[NSArray arrayWithObjects:NSURLPboardType, NSFilenamesPboardType, nil]];
     [self.libraryTable setDraggingSourceOperationMask:NSDragOperationLink forLocal:NO];
-    [self.libraryTable setDraggingSourceOperationMask:NSDragOperationMove forLocal:YES];
-    [self.libraryTable registerForDraggedTypes:[NSArray arrayWithObject:NSTIFFPboardType]];
-}
-
-- (void)loadImages
-{
-    NSBundle *mainBundle = [NSBundle mainBundle];
-    [self.mImagePathArray addObjectsFromArray:[mainBundle pathsForResourcesOfType:kCHLibraryImageType inDirectory:kCHResourcesDirectoryName]];
 }
 
 
-#pragma mark fill table
-- (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
+- (BOOL)tableView:(NSTableView *)tableView acceptDrop:(id<NSDraggingInfo>)info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)dropOperation
 {
-    NSTableCellView *result = nil;
+    NSPasteboard* pboard = [info draggingPasteboard];
+    NSURL *url = [NSURL URLFromPasteboard:pboard];
+    NSImage *imageFile = nil;
     
-    NSString *path = [self.mImagePathArray objectAtIndex:row];
-    if ([tableColumn.identifier isEqualToString:kCHLibraryTableImageCellIdentifier])
+    if (url)
     {
-        result = [tableView makeViewWithIdentifier:kCHLibraryTableImageCellIdentifier owner:self];
-        result.imageView.image = [[[NSImage alloc] initWithContentsOfFile:path] autorelease];
+        imageFile = [[NSImage alloc] initWithContentsOfURL:url];
     }
-    if ([tableColumn.identifier isEqualToString:kCHLibraryTableTitleCellIdentifier])
+    
+    if (imageFile)
     {
-        result = [tableView makeViewWithIdentifier:kCHLibraryTableTitleCellIdentifier owner:self];
-        result.textField.stringValue = path.lastPathComponent.stringByDeletingPathExtension;
+        CHLibraryImage *image = [[CHLibraryImage alloc] initWithTitle:url.lastPathComponent.stringByDeletingPathExtension url:url readOnly:NO];
+        NSImage *imageData = [[NSImage alloc] initWithContentsOfURL:image.url];
+        NSData *imageBinaryData = imageData.TIFFRepresentation;
+        
+        if ([self.libraryModelController loadImageData:imageBinaryData withFileName:image.url.lastPathComponent])
+        {
+            [self.libraryModelController addImageInLibrary:image withIndex:row];
+        }
+         
+        [image release];
+        [imageData release];
+        [imageFile release];
     }
+    
+    return YES;
+}
+
+- (NSDragOperation)tableView:(NSTableView *)tableView validateDrop:(id<NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)dropOperation
+{
+    NSDragOperation result = NSDragOperationNone;
+    
+    if ([info draggingSource] != self)
+    {
+        result = NSDragOperationCopy;
+    }
+    
     return result;
 }
 
-
-- (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
-{
-    return self.mImagePathArray.count;
-}
 
 - (BOOL)tableView:(NSTableView *)tableView writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard *)pboard
 {
@@ -85,7 +87,9 @@ NSString * const kCHLibraryImageType = @"png";
         
     NSInteger row = [rowIndexes firstIndex];
     
-    NSImage *image = [[NSImage alloc] initWithContentsOfFile:self.mImagePathArray[row]];
+    
+    NSURL *imageUrl = [self.libraryModelController imageWithIndex:row].url;
+    NSImage *image = [[NSImage alloc] initWithContentsOfURL:imageUrl];
     
     if (image)
     {
@@ -107,7 +111,8 @@ NSString * const kCHLibraryImageType = @"png";
     {
         NSUInteger selectedRow = rowIndexes.firstIndex;
         
-        NSImage *image = [[[NSImage alloc] initWithContentsOfFile:self.mImagePathArray[selectedRow]] autorelease];
+        NSURL *imageUrl = [self.libraryModelController imageWithIndex:selectedRow].url;
+        NSImage *image = [[[NSImage alloc] initWithContentsOfURL:imageUrl] autorelease];
         
         [draggingItem setDraggingFrame:NSMakeRect(session.draggingLocation.x - (image.size.width / 2), session.draggingLocation.y - (image.size.height / 2), image.size.width, image.size.height) contents:image];
     }];
@@ -119,13 +124,15 @@ NSString * const kCHLibraryImageType = @"png";
     NSInteger row = sender.selectedRow;
     if (row > -1)
     {
-        [self.currentDocumentWindowController addImageOnViewWithInitialPoint:NSZeroPoint path:self.mImagePathArray[row]];
+        NSURL *imageUrl = [self.libraryModelController imageWithIndex:row].url;
+        [self.currentDocumentWindowController addImageOnViewWithInitialPoint:NSZeroPoint path:imageUrl];
     }
 }
 
 
 - (void)dealloc
 {
+    [_libraryModelController release];
     [super dealloc];
 }
 @end

@@ -24,7 +24,7 @@ typedef NS_ENUM(NSUInteger, CHDrawTool)
 
 - (instancetype)initWithNibName:(NSString *)nibName modelContoller:(CHDocumentModelController *)modelContoller;
 
-- (void)addImageOnViewWithInitialPoint:(NSPoint)aPoint path:(NSString *)aPath;
+- (void)addImageOnViewWithInitialPoint:(NSPoint)aPoint path:(NSURL *)aURL;
 - (void)setToolForDrawOnCanvas:(CHDrawTool)drawTool;
 - (NSData *)documentViewRepresentationWithType:(CFStringRef)type;
 
