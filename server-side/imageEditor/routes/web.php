@@ -15,8 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Auth::routes();
+Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-Auth::guard('api')->user();
+//Auth::guard('api')->user();

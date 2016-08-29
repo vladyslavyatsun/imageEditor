@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="MySQL - imageEditor@localhost" uuid="ad841095-364f-486c-9b67-e9971bb406d2">
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <introspection-scope>imageEditor:</introspection-scope>
+      <resolve-scope>imageEditor:</resolve-scope>
+    </data-source>
+  </component>
+</project>

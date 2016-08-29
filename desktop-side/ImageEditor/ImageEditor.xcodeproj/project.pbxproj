@@ -17,12 +17,12 @@
 		8A3DECE21D678DD8008E0132 /* CHRectangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3DECE11D678DD8008E0132 /* CHRectangle.m */; };
 		8A3DECE51D678DF8008E0132 /* CHEllipse.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3DECE41D678DF8008E0132 /* CHEllipse.m */; };
 		8A3DECE81D67956D008E0132 /* CHCanvasView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3DECE71D67956D008E0132 /* CHCanvasView.m */; };
-		8A3DECED1D687389008E0132 /* CHInstrumentsPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3DECEB1D687389008E0132 /* CHInstrumentsPanelController.m */; };
-		8A3DECEE1D687389008E0132 /* CHInstrumentsPanelController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3DECEC1D687389008E0132 /* CHInstrumentsPanelController.xib */; };
-		8A3DECF21D6873B6008E0132 /* CHLibraryPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3DECF01D6873B6008E0132 /* CHLibraryPanelController.m */; };
-		8A3DECF31D6873B6008E0132 /* CHLibraryPanelController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3DECF11D6873B6008E0132 /* CHLibraryPanelController.xib */; };
-		8A3DECF71D687513008E0132 /* CHInspectorPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3DECF51D687513008E0132 /* CHInspectorPanelController.m */; };
-		8A3DECF81D687513008E0132 /* CHInspectorPanelController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3DECF61D687513008E0132 /* CHInspectorPanelController.xib */; };
+		8A3DECED1D687389008E0132 /* CHInstrumentsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3DECEB1D687389008E0132 /* CHInstrumentsWindowController.m */; };
+		8A3DECEE1D687389008E0132 /* CHInstrumentsWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3DECEC1D687389008E0132 /* CHInstrumentsWindowController.xib */; };
+		8A3DECF21D6873B6008E0132 /* CHLibraryWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3DECF01D6873B6008E0132 /* CHLibraryWindowController.m */; };
+		8A3DECF31D6873B6008E0132 /* CHLibraryWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3DECF11D6873B6008E0132 /* CHLibraryWindowController.xib */; };
+		8A3DECF71D687513008E0132 /* CHInspectorWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3DECF51D687513008E0132 /* CHInspectorWindowController.m */; };
+		8A3DECF81D687513008E0132 /* CHInspectorWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3DECF61D687513008E0132 /* CHInspectorWindowController.xib */; };
 		8A3DED0A1D68D774008E0132 /* CHImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3DED091D68D774008E0132 /* CHImage.m */; };
 		8A3DED131D69E57F008E0132 /* CHDocumentWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3DED121D69E57F008E0132 /* CHDocumentWindowController.m */; };
 		8A3DED181D6A4175008E0132 /* CHShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3DED171D6A4175008E0132 /* CHShape.m */; };
@@ -38,6 +38,11 @@
 		8A3DED361D6F1C8A008E0132 /* CHIntegerTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3DED351D6F1C8A008E0132 /* CHIntegerTransformer.m */; };
 		8A3DED3B1D70AF3F008E0132 /* icons in Resources */ = {isa = PBXBuildFile; fileRef = 8A3DED3A1D70AF3F008E0132 /* icons */; };
 		8A3DED491D70B31D008E0132 /* icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A3DED481D70B31D008E0132 /* icons.xcassets */; };
+		8A3DED4F1D73154E008E0132 /* CHAutorizationtWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3DED4D1D73154E008E0132 /* CHAutorizationtWindowController.m */; };
+		8A3DED501D73154E008E0132 /* CHAutorizationtWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3DED4E1D73154E008E0132 /* CHAutorizationtWindowController.xib */; };
+		8A3DED541D733118008E0132 /* CHServerConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3DED531D733118008E0132 /* CHServerConnector.m */; };
+		8A3DED581D7348A4008E0132 /* CHDocumentsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3DED561D7348A4008E0132 /* CHDocumentsWindowController.m */; };
+		8A3DED591D7348A4008E0132 /* CHDocumentsWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3DED571D7348A4008E0132 /* CHDocumentsWindowController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,15 +65,15 @@
 		8A3DECE41D678DF8008E0132 /* CHEllipse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHEllipse.m; sourceTree = "<group>"; };
 		8A3DECE61D67956D008E0132 /* CHCanvasView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCanvasView.h; sourceTree = "<group>"; };
 		8A3DECE71D67956D008E0132 /* CHCanvasView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHCanvasView.m; sourceTree = "<group>"; };
-		8A3DECEA1D687389008E0132 /* CHInstrumentsPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHInstrumentsPanelController.h; sourceTree = "<group>"; };
-		8A3DECEB1D687389008E0132 /* CHInstrumentsPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHInstrumentsPanelController.m; sourceTree = "<group>"; };
-		8A3DECEC1D687389008E0132 /* CHInstrumentsPanelController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CHInstrumentsPanelController.xib; sourceTree = "<group>"; };
-		8A3DECEF1D6873B6008E0132 /* CHLibraryPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHLibraryPanelController.h; sourceTree = "<group>"; };
-		8A3DECF01D6873B6008E0132 /* CHLibraryPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHLibraryPanelController.m; sourceTree = "<group>"; };
-		8A3DECF11D6873B6008E0132 /* CHLibraryPanelController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CHLibraryPanelController.xib; sourceTree = "<group>"; };
-		8A3DECF41D687513008E0132 /* CHInspectorPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHInspectorPanelController.h; sourceTree = "<group>"; };
-		8A3DECF51D687513008E0132 /* CHInspectorPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHInspectorPanelController.m; sourceTree = "<group>"; };
-		8A3DECF61D687513008E0132 /* CHInspectorPanelController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CHInspectorPanelController.xib; sourceTree = "<group>"; };
+		8A3DECEA1D687389008E0132 /* CHInstrumentsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHInstrumentsWindowController.h; sourceTree = "<group>"; };
+		8A3DECEB1D687389008E0132 /* CHInstrumentsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHInstrumentsWindowController.m; sourceTree = "<group>"; };
+		8A3DECEC1D687389008E0132 /* CHInstrumentsWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CHInstrumentsWindowController.xib; sourceTree = "<group>"; };
+		8A3DECEF1D6873B6008E0132 /* CHLibraryWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHLibraryWindowController.h; sourceTree = "<group>"; };
+		8A3DECF01D6873B6008E0132 /* CHLibraryWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHLibraryWindowController.m; sourceTree = "<group>"; };
+		8A3DECF11D6873B6008E0132 /* CHLibraryWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CHLibraryWindowController.xib; sourceTree = "<group>"; };
+		8A3DECF41D687513008E0132 /* CHInspectorWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHInspectorWindowController.h; sourceTree = "<group>"; };
+		8A3DECF51D687513008E0132 /* CHInspectorWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHInspectorWindowController.m; sourceTree = "<group>"; };
+		8A3DECF61D687513008E0132 /* CHInspectorWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CHInspectorWindowController.xib; sourceTree = "<group>"; };
 		8A3DED081D68D774008E0132 /* CHImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHImage.h; sourceTree = "<group>"; };
 		8A3DED091D68D774008E0132 /* CHImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHImage.m; sourceTree = "<group>"; };
 		8A3DED111D69E57F008E0132 /* CHDocumentWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHDocumentWindowController.h; sourceTree = "<group>"; };
@@ -96,6 +101,14 @@
 		8A3DED351D6F1C8A008E0132 /* CHIntegerTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHIntegerTransformer.m; sourceTree = "<group>"; };
 		8A3DED3A1D70AF3F008E0132 /* icons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = icons; sourceTree = "<group>"; };
 		8A3DED481D70B31D008E0132 /* icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = icons.xcassets; sourceTree = "<group>"; };
+		8A3DED4C1D73154E008E0132 /* CHAutorizationtWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHAutorizationtWindowController.h; sourceTree = "<group>"; };
+		8A3DED4D1D73154E008E0132 /* CHAutorizationtWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHAutorizationtWindowController.m; sourceTree = "<group>"; };
+		8A3DED4E1D73154E008E0132 /* CHAutorizationtWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CHAutorizationtWindowController.xib; sourceTree = "<group>"; };
+		8A3DED521D733118008E0132 /* CHServerConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHServerConnector.h; sourceTree = "<group>"; };
+		8A3DED531D733118008E0132 /* CHServerConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHServerConnector.m; sourceTree = "<group>"; };
+		8A3DED551D7348A4008E0132 /* CHDocumentsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHDocumentsWindowController.h; sourceTree = "<group>"; };
+		8A3DED561D7348A4008E0132 /* CHDocumentsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHDocumentsWindowController.m; sourceTree = "<group>"; };
+		8A3DED571D7348A4008E0132 /* CHDocumentsWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CHDocumentsWindowController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,12 +141,10 @@
 		8A3DECBA1D676A0E008E0132 /* ImageEditor */ = {
 			isa = PBXGroup;
 			children = (
-				8A3DED371D6F1C90008E0132 /* Transformers */,
-				8A3DED071D68962F008E0132 /* Panels */,
-				8A3DECC11D676A0E008E0132 /* CHDocument.h */,
-				8A3DECC21D676A0E008E0132 /* CHDocument.m */,
 				8A3DECBB1D676A0E008E0132 /* CHAppController.h */,
 				8A3DECBC1D676A0E008E0132 /* CHAppController.m */,
+				8A3DECC11D676A0E008E0132 /* CHDocument.h */,
+				8A3DECC21D676A0E008E0132 /* CHDocument.m */,
 				8A3DED2C1D6B5285008E0132 /* CHDocumentModelController.h */,
 				8A3DED2D1D6B5285008E0132 /* CHDocumentModelController.m */,
 				8A3DED111D69E57F008E0132 /* CHDocumentWindowController.h */,
@@ -142,8 +153,11 @@
 				8A3DED321D6EE59C008E0132 /* CHCanvasViewController.m */,
 				8A3DECE61D67956D008E0132 /* CHCanvasView.h */,
 				8A3DECE71D67956D008E0132 /* CHCanvasView.m */,
-				8A3DECD81D678499008E0132 /* Model */,
-				8A3DECCC1D676A0E008E0132 /* Info.plist */,
+				8A3DED511D73155C008E0132 /* Account */,
+				8A3DED371D6F1C90008E0132 /* Transformers */,
+				8A3DED071D68962F008E0132 /* Panels */,
+				8A3DED191D6B10F7008E0132 /* View Element Representation */,
+				8A3DECD91D6784B4008E0132 /* Model Elements */,
 				8A3DECE91D67958F008E0132 /* Resourses */,
 				8A3DECBE1D676A0E008E0132 /* Supporting Files */,
 			);
@@ -153,19 +167,11 @@
 		8A3DECBE1D676A0E008E0132 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8A3DECCC1D676A0E008E0132 /* Info.plist */,
+				8A3DED481D70B31D008E0132 /* icons.xcassets */,
 				8A3DECBF1D676A0E008E0132 /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		8A3DECD81D678499008E0132 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				8A3DECD91D6784B4008E0132 /* Model Elements */,
-				8A3DED191D6B10F7008E0132 /* View Element Representation */,
-				8A3DED481D70B31D008E0132 /* icons.xcassets */,
-			);
-			name = Model;
 			sourceTree = "<group>";
 		};
 		8A3DECD91D6784B4008E0132 /* Model Elements */ = {
@@ -200,9 +206,11 @@
 		8A3DECFA1D687E41008E0132 /* xibs */ = {
 			isa = PBXGroup;
 			children = (
-				8A3DECEC1D687389008E0132 /* CHInstrumentsPanelController.xib */,
-				8A3DECF11D6873B6008E0132 /* CHLibraryPanelController.xib */,
-				8A3DECF61D687513008E0132 /* CHInspectorPanelController.xib */,
+				8A3DED571D7348A4008E0132 /* CHDocumentsWindowController.xib */,
+				8A3DED4E1D73154E008E0132 /* CHAutorizationtWindowController.xib */,
+				8A3DECEC1D687389008E0132 /* CHInstrumentsWindowController.xib */,
+				8A3DECF11D6873B6008E0132 /* CHLibraryWindowController.xib */,
+				8A3DECF61D687513008E0132 /* CHInspectorWindowController.xib */,
 				8A3DECC91D676A0E008E0132 /* MainMenu.xib */,
 				8A3DECC41D676A0E008E0132 /* CHDocument.xib */,
 			);
@@ -212,12 +220,12 @@
 		8A3DED071D68962F008E0132 /* Panels */ = {
 			isa = PBXGroup;
 			children = (
-				8A3DECEA1D687389008E0132 /* CHInstrumentsPanelController.h */,
-				8A3DECEB1D687389008E0132 /* CHInstrumentsPanelController.m */,
-				8A3DECEF1D6873B6008E0132 /* CHLibraryPanelController.h */,
-				8A3DECF01D6873B6008E0132 /* CHLibraryPanelController.m */,
-				8A3DECF41D687513008E0132 /* CHInspectorPanelController.h */,
-				8A3DECF51D687513008E0132 /* CHInspectorPanelController.m */,
+				8A3DECEA1D687389008E0132 /* CHInstrumentsWindowController.h */,
+				8A3DECEB1D687389008E0132 /* CHInstrumentsWindowController.m */,
+				8A3DECEF1D6873B6008E0132 /* CHLibraryWindowController.h */,
+				8A3DECF01D6873B6008E0132 /* CHLibraryWindowController.m */,
+				8A3DECF41D687513008E0132 /* CHInspectorWindowController.h */,
+				8A3DECF51D687513008E0132 /* CHInspectorWindowController.m */,
 			);
 			name = Panels;
 			sourceTree = "<group>";
@@ -248,6 +256,19 @@
 				8A3DED351D6F1C8A008E0132 /* CHIntegerTransformer.m */,
 			);
 			name = Transformers;
+			sourceTree = "<group>";
+		};
+		8A3DED511D73155C008E0132 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				8A3DED521D733118008E0132 /* CHServerConnector.h */,
+				8A3DED531D733118008E0132 /* CHServerConnector.m */,
+				8A3DED4C1D73154E008E0132 /* CHAutorizationtWindowController.h */,
+				8A3DED4D1D73154E008E0132 /* CHAutorizationtWindowController.m */,
+				8A3DED551D7348A4008E0132 /* CHDocumentsWindowController.h */,
+				8A3DED561D7348A4008E0132 /* CHDocumentsWindowController.m */,
+			);
+			name = Account;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -308,13 +329,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A3DED3B1D70AF3F008E0132 /* icons in Resources */,
-				8A3DECF81D687513008E0132 /* CHInspectorPanelController.xib in Resources */,
+				8A3DECF81D687513008E0132 /* CHInspectorWindowController.xib in Resources */,
 				8A3DECC61D676A0E008E0132 /* CHDocument.xib in Resources */,
-				8A3DECEE1D687389008E0132 /* CHInstrumentsPanelController.xib in Resources */,
+				8A3DECEE1D687389008E0132 /* CHInstrumentsWindowController.xib in Resources */,
 				8A3DECCB1D676A0E008E0132 /* MainMenu.xib in Resources */,
 				8A3DED301D6E172B008E0132 /* images in Resources */,
+				8A3DED501D73154E008E0132 /* CHAutorizationtWindowController.xib in Resources */,
+				8A3DED591D7348A4008E0132 /* CHDocumentsWindowController.xib in Resources */,
 				8A3DED491D70B31D008E0132 /* icons.xcassets in Resources */,
-				8A3DECF31D6873B6008E0132 /* CHLibraryPanelController.xib in Resources */,
+				8A3DECF31D6873B6008E0132 /* CHLibraryWindowController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,25 +351,28 @@
 				8A3DED181D6A4175008E0132 /* CHShape.m in Sources */,
 				8A3DECC31D676A0E008E0132 /* CHDocument.m in Sources */,
 				8A3DECE51D678DF8008E0132 /* CHEllipse.m in Sources */,
-				8A3DECF71D687513008E0132 /* CHInspectorPanelController.m in Sources */,
+				8A3DECF71D687513008E0132 /* CHInspectorWindowController.m in Sources */,
 				8A3DED131D69E57F008E0132 /* CHDocumentWindowController.m in Sources */,
 				8A3DECC01D676A0E008E0132 /* main.m in Sources */,
 				8A3DED2B1D6B226C008E0132 /* CHRectangleRepresentation.m in Sources */,
-				8A3DECED1D687389008E0132 /* CHInstrumentsPanelController.m in Sources */,
+				8A3DECED1D687389008E0132 /* CHInstrumentsWindowController.m in Sources */,
 				8A3DED361D6F1C8A008E0132 /* CHIntegerTransformer.m in Sources */,
 				8A3DED221D6B1E01008E0132 /* CHShapeRepresentation.m in Sources */,
 				8A3DED1C1D6B1137008E0132 /* CHAbstractElementRepresentation.m in Sources */,
+				8A3DED581D7348A4008E0132 /* CHDocumentsWindowController.m in Sources */,
 				8A3DED0A1D68D774008E0132 /* CHImage.m in Sources */,
 				8A3DECE81D67956D008E0132 /* CHCanvasView.m in Sources */,
 				8A3DECDC1D6784FE008E0132 /* CHAbstractElement.m in Sources */,
 				8A3DED331D6EE59C008E0132 /* CHCanvasViewController.m in Sources */,
 				8A3DECBD1D676A0E008E0132 /* CHAppController.m in Sources */,
+				8A3DED4F1D73154E008E0132 /* CHAutorizationtWindowController.m in Sources */,
 				8A3DED2E1D6B5285008E0132 /* CHDocumentModelController.m in Sources */,
 				8A3DED281D6B21B4008E0132 /* CHEllipseRepresentation.m in Sources */,
+				8A3DED541D733118008E0132 /* CHServerConnector.m in Sources */,
 				8A3DECE21D678DD8008E0132 /* CHRectangle.m in Sources */,
 				8A3DED1F1D6B1535008E0132 /* CHImageRepresentation.m in Sources */,
 				8A3DECDF1D678CA3008E0132 /* CHLine.m in Sources */,
-				8A3DECF21D6873B6008E0132 /* CHLibraryPanelController.m in Sources */,
+				8A3DECF21D6873B6008E0132 /* CHLibraryWindowController.m in Sources */,
 				8A3DED251D6B1F80008E0132 /* CHLineRepresentation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,28 +7,36 @@
 //
 
 #import "CHAppController.h"
-#import "CHInspectorPanelController.h"
-#import "CHLibraryPanelController.h"
-#import "CHInstrumentsPanelController.h"
+#import "CHInspectorWindowController.h"
+#import "CHLibraryWindowController.h"
+#import "CHInstrumentsWindowController.h"
 #import "CHAbstractElementRepresentation.h"
+#import "CHAutorizationtWindowController.h"
+#import "CHServerConnector.h"
 
 NSString * const kCHSelectedElementPath = @"mainWindow.windowController.canvasViewController.selectedElement";
 NSString * const kCHCurrentDocumentPath = @"mainWindow.windowController";
 
 @interface CHAppController ()
-@property (nonatomic, retain) CHLibraryPanelController *libraryPanelController;
-@property (nonatomic, retain) CHInspectorPanelController *inspectorPanelController;
-@property (nonatomic, retain) CHInstrumentsPanelController *instrumentsPanelController;
+@property (nonatomic, retain) CHLibraryWindowController *libraryPanelController;
+@property (nonatomic, retain) CHInspectorWindowController *inspectorPanelController;
+@property (nonatomic, retain) CHInstrumentsWindowController *instrumentsPanelController;
+@property (nonatomic, retain) CHAutorizationtWindowController *autorizationWindowController;
+@property (nonatomic, retain) CHServerConnector *serverConnector;
+
 @end
 
 @implementation CHAppController
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    self.serverConnector = [[[CHServerConnector alloc] init] autorelease];
+    
     [NSApp activateIgnoringOtherApps:YES];
     
     [self.libraryPanelController showWindow:self];
     [self.inspectorPanelController showWindow:self];
+    [self.instrumentsPanelController showWindow:self];
     
     [NSApp addObserver:self
             forKeyPath:kCHSelectedElementPath
@@ -39,6 +47,17 @@ NSString * const kCHCurrentDocumentPath = @"mainWindow.windowController";
             forKeyPath:kCHCurrentDocumentPath
                options:NSKeyValueObservingOptionNew
                context:[CHAppController class]];
+    
+    
+    
+    
+    [self.serverConnector logInWithName:@"test" password:@"test1234"];
+    //[self.serverConnector indexesOfDocumentsCallback:nil];
+    //[self.serverConnector previewDataWithIndex:2 callback:nil];
+    //[self.serverConnector downloadDocumentWithIndex:2];
+    
+    
+    
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification
@@ -111,40 +130,77 @@ NSString * const kCHCurrentDocumentPath = @"mainWindow.windowController";
     }
 }
 
-- (CHLibraryPanelController *)libraryPanelController
+#pragma mark account manage
+- (IBAction)clickOnAccountLogIn:(id)sender
+{
+    if ([self.autorizationWindowController.window isVisible])
+    {
+        [self.autorizationWindowController.window orderOut:self];
+    }
+    else
+    {
+        [self.autorizationWindowController.window makeKeyAndOrderFront:self];
+    }
+
+}
+
+- (IBAction)clickOnAccountLogOut:(id)sender
+{
+    [self.serverConnector logOut];
+}
+
+- (IBAction)clickOnAccountDocuments:(id)sender
+{
+    
+}
+
+#pragma mark getters
+- (CHLibraryWindowController *)libraryPanelController
 {
     if (!_libraryPanelController)
     {
-        _libraryPanelController = [[CHLibraryPanelController alloc] init];
+        _libraryPanelController = [[CHLibraryWindowController alloc] init];
     }
     return _libraryPanelController;
 }
 
-- (CHInstrumentsPanelController *)instrumentsPanelController
+- (CHInstrumentsWindowController *)instrumentsPanelController
 {
     if (!_instrumentsPanelController)
     {
-        _instrumentsPanelController = [[CHInstrumentsPanelController alloc] init];
+        _instrumentsPanelController = [[CHInstrumentsWindowController alloc] init];
     }
     return _instrumentsPanelController;
 }
 
-- (CHInspectorPanelController *)inspectorPanelController
+- (CHInspectorWindowController *)inspectorPanelController
 {
     if (!_inspectorPanelController)
     {
-        _inspectorPanelController = [[CHInspectorPanelController alloc] init];
+        _inspectorPanelController = [[CHInspectorWindowController alloc] init];
     }
     return _inspectorPanelController;
+}
+
+- (CHAutorizationtWindowController *)autorizationWindowController
+{
+    if (!_autorizationWindowController)
+    {
+        _autorizationWindowController = [[CHAutorizationtWindowController alloc] init];
+        [_autorizationWindowController.window makeKeyAndOrderFront:self];
+    }
+    return _autorizationWindowController;
 }
 
 - (void)dealloc
 {
     [NSApp removeObserver:self forKeyPath:kCHSelectedElementPath context:[CHAppController class]];
     [NSApp removeObserver:self forKeyPath:kCHCurrentDocumentPath context:[CHAppController class]];
+    [_serverConnector release];
     [_libraryPanelController release];
     [_inspectorPanelController release];
     [_instrumentsPanelController release];
+    [_autorizationWindowController release];
     [super dealloc];
 }
 @end

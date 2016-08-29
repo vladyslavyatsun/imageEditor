@@ -6,20 +6,20 @@
 //  Copyright © 2016 Владислав Яцун. All rights reserved.
 //
 
-#import "CHInspectorPanelController.h"
+#import "CHInspectorWindowController.h"
 #import "CHAbstractElementRepresentation.h"
 
-@interface CHInspectorPanelController ()
+@interface CHInspectorWindowController ()
 @property (nonatomic, assign) CGFloat originX;
 @property (nonatomic, assign) CGFloat originY;
 @property (nonatomic, assign) CGFloat width;
 @property (nonatomic, assign) CGFloat height;
 @end
 
-@implementation CHInspectorPanelController
+@implementation CHInspectorWindowController
 - (instancetype) init
 {
-    return [super initWithWindowNibName:@"CHInspectorPanelController"];
+    return [super initWithWindowNibName:@"CHInspectorWindowController"];
 }
 
 - (void)windowDidLoad

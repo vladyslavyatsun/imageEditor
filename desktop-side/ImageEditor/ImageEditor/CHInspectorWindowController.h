@@ -9,6 +9,6 @@
 #import <Cocoa/Cocoa.h>
 @class CHAbstractElementRepresentation;
 
-@interface CHInspectorPanelController : NSWindowController
+@interface CHInspectorWindowController : NSWindowController
 @property (nonatomic, assign) CHAbstractElementRepresentation *selectedElement;
 @end

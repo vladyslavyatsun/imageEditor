@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="CHLibraryPanelController">
+        <customObject id="-2" userLabel="File's Owner" customClass="CHLibraryWindowController">
             <connections>
                 <outlet property="libraryTable" destination="e3r-y5-avf" id="Ccd-Hk-VVb"/>
                 <outlet property="window" destination="H75-o4-Jh8" id="PWb-HO-hef"/>
@@ -18,7 +18,7 @@
                 <binding destination="-2" name="contentArray" keyPath="self.mImagePathArray" id="C18-T2-pNZ"/>
             </connections>
         </arrayController>
-        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="H75-o4-Jh8" customClass="NSPanel">
+        <window title="Library" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="H75-o4-Jh8" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" utility="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="116" width="333" height="367"/>

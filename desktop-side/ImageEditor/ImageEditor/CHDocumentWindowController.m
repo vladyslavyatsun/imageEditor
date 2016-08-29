@@ -13,11 +13,15 @@
 #import "CHDocumentModelController.h"
 #import "CHShape.h"
 
+#warning rename that
+NSString *const kIECanvasViewControllerUndoManagerActionAdding = @"Adding";
+NSString *const kIECanvasViewControllerUndoManagerActionRemoving = @"Removing";
+NSString *const kIECanvasViewControllerUndoManagerActionCopying = @"Copying";
+
 @interface CHDocumentWindowController ()
 @property (nonatomic, retain) CHCanvasViewController *canvasViewController;
 @property (nonatomic, assign) CHDocumentModelController *modelController;
 @property (nonatomic, assign) CHAbstractElementRepresentation *selectedElement;
-@property (nonatomic, assign) CHDrawTool selectedDrawTool;
 @end
 
 @implementation CHDocumentWindowController
@@ -30,6 +34,7 @@
     {
         _modelController = modelContoller;
         _canvasViewController = [[CHCanvasViewController alloc] init];
+        _selectedDrawTool = kCHPointerTool;
  
     }
     return self;
@@ -328,6 +333,40 @@
             break;
     }
     
+}
+
+
+- (void)addAbstractElement:(CHAbstractElement *)element withUndoManagerAction:(NSString *)action
+{
+    if (element)
+    {
+        [[self.undoManager prepareWithInvocationTarget:self] removeAbstractElement:element withUndoManagerAction:kIECanvasViewControllerUndoManagerActionRemoving];
+        [self.modelController addElement:element];
+        
+        if (!self.undoManager.isUndoing)
+        {
+            [self.undoManager setActionName:action];
+        }
+    }
+}
+
+- (void)removeAbstractElement:(CHAbstractElement *)element withUndoManagerAction:(NSString *)action
+{
+    if (element)
+    {
+        if (element == self.selectedElement.modelElement)
+        {
+            self.selectedElement = nil;
+        }
+        
+        [[self.undoManager prepareWithInvocationTarget:self] addAbstractElement:element withUndoManagerAction:kIECanvasViewControllerUndoManagerActionAdding];
+        [self.modelController removeElement:element];
+        
+        if (!self.undoManager.isUndoing)
+        {
+            [self.undoManager setActionName:action];
+        }
+    }
 }
 
 

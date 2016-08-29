@@ -6,22 +6,27 @@
 //  Copyright © 2016 Владислав Яцун. All rights reserved.
 //
 
-#import "CHLibraryPanelController.h"
+#import "CHLibraryWindowController.h"
 #import "CHDocumentWindowController.h"
+
+
+#warning ----1
+#import "CHServerConnector.h"
 
 NSString * const kCHResourcesDirectoryName = @"images";
 NSString * const kCHLibraryTableImageCellIdentifier = @"image";
 NSString * const kCHLibraryTableTitleCellIdentifier = @"title";
-@interface CHLibraryPanelController ()<NSTableViewDataSource, NSTableViewDelegate>
+NSString * const kCHLibraryImageType = @"png";
+@interface CHLibraryWindowController ()<NSTableViewDataSource, NSTableViewDelegate>
 @property (assign) IBOutlet NSTableView *libraryTable;
 @property (nonatomic, retain) NSMutableArray<NSString *> *mImagePathArray;
 @end
 
-@implementation CHLibraryPanelController
+@implementation CHLibraryWindowController
 
 - (instancetype) init
 {
-    self = [super initWithWindowNibName:@"CHLibraryPanelController"];
+    self = [super initWithWindowNibName:@"CHLibraryWindowController"];
     
     if (self)
     {
@@ -45,7 +50,7 @@ NSString * const kCHLibraryTableTitleCellIdentifier = @"title";
 - (void)loadImages
 {
     NSBundle *mainBundle = [NSBundle mainBundle];
-    [self.mImagePathArray addObjectsFromArray:[mainBundle pathsForResourcesOfType:@"png" inDirectory:kCHResourcesDirectoryName]];
+    [self.mImagePathArray addObjectsFromArray:[mainBundle pathsForResourcesOfType:kCHLibraryImageType inDirectory:kCHResourcesDirectoryName]];
 }
 
 
@@ -58,7 +63,7 @@ NSString * const kCHLibraryTableTitleCellIdentifier = @"title";
     if ([tableColumn.identifier isEqualToString:kCHLibraryTableImageCellIdentifier])
     {
         result = [tableView makeViewWithIdentifier:kCHLibraryTableImageCellIdentifier owner:self];
-        result.imageView.image = [[NSImage alloc] initWithContentsOfFile:path];
+        result.imageView.image = [[[NSImage alloc] initWithContentsOfFile:path] autorelease];
     }
     if ([tableColumn.identifier isEqualToString:kCHLibraryTableTitleCellIdentifier])
     {

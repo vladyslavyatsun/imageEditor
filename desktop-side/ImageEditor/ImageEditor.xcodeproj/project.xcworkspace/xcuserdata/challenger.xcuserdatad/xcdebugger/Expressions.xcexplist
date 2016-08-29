@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "-[CHLibraryPanelController tableView:viewForTableColumn:row:]:CHLibraryPanelController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[CHCanvasView drawRect:]:CHCanvasView.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[CHCanvasView addElementOnView:]:CHCanvasView.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[CHImage encodeWithCoder:]:CHImage.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[CHAbstractElementRepresentation pasteboard:item:provideDataForType:]:CHAbstractElementRepresentation.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[CHCanvasView mouseDragged:]:CHCanvasView.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[CHDocumentWindowController paste:]:CHDocumentWindowController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[CHCanvasViewController addElementOnView:]:CHCanvasViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[CHDocumentWindowController delete:]:CHDocumentWindowController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[CHInspectorPanelController init]:CHInspectorPanelController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[CHInspectorPanelController observeValueForKeyPath:ofObject:change:context:]:CHInspectorPanelController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[CHInstrumentsPanelController selectRectangle:]:CHInstrumentsPanelController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[CHDocumentWindowController mouseDown:]:CHDocumentWindowController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[CHCanvasView redraw:]:CHCanvasView.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[CHDocument makeWindowControllers]:CHDocument.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[CHImageRepresentation draw]:CHImageRepresentation.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[CHShapeRepresentation addPoint:]:CHShapeRepresentation.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[CHDocumentWindowController init]:CHDocumentWindowController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[CHInspectorPanelController windowDidLoad]:CHInspectorPanelController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[CHCanvasViewController mouseDown:]:CHCanvasViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[CHCanvasView mouseDown:]:CHCanvasView.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[CHCanvasViewController init]:CHCanvasViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[CHLibraryPanelController tableView:writeRowsWithIndexes:toPasteboard:]:CHLibraryPanelController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[CHCanvasViewController viewToBitmapImageRepresentation]:CHCanvasViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[CHCanvasViewController removeElementFromView:]:CHCanvasViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[CHCanvasViewController mouseDragged:]:CHCanvasViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[CHAppDelegate observeValueForKeyPath:ofObject:change:context:]:CHAppDelegate.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[CHDocumentModelController addElement:]:CHDocumentModelController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[CHDocumentWindowController windowDidLoad]:CHDocumentWindowController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[CHInstrumentsPanelController selectLine:]:CHInstrumentsPanelController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[CHImage initWithCoder:]:CHImage.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[CHDocumentWindowController addNewElementOnView:]:CHDocumentWindowController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[CHLibraryWindowController onTableDoubleClickAction:]:CHLibraryWindowController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "NSApp">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[CHDocument readFromData:ofType:error:]:CHDocument.m">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

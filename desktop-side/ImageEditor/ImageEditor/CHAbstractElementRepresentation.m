@@ -114,6 +114,8 @@ NSString * const kCHElementRepresentationDidUpdate = @"element representation up
     [self didChangeValueForKey:@"rect"];
 }
 
+
+
 - (void)updateModelElement
 {
     NSPoint startPoint = NSMakePoint(self.rect.origin.x, self.rect.origin.y);
@@ -130,7 +132,6 @@ NSString * const kCHElementRepresentationDidUpdate = @"element representation up
         {
             NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.modelElement];
             [pasteboard setData:data forType:(NSString *)kUTTypeImage];
-            NSLog(@"");
         }
     }
 }

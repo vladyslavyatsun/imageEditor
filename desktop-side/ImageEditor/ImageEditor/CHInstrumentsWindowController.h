@@ -1,5 +1,5 @@
 //
-//  CHLibraryPanel.h
+//  CHInstrumentsPanel.h
 //  ImageEditor
 //
 //  Created by Владислав Яцун on 8/20/16.
@@ -9,6 +9,6 @@
 #import <Cocoa/Cocoa.h>
 @class CHDocumentWindowController;
 
-@interface CHLibraryPanelController : NSWindowController
+@interface CHInstrumentsWindowController : NSWindowController
 @property (nonatomic, assign) CHDocumentWindowController *currentDocumentWindowController;
 @end

@@ -20,6 +20,8 @@ typedef NS_ENUM(NSUInteger, CHDrawTool)
     kCHEllipseTool = 3
 };
 
+@property (nonatomic, assign) CHDrawTool selectedDrawTool;
+
 - (instancetype)initWithNibName:(NSString *)nibName modelContoller:(CHDocumentModelController *)modelContoller;
 
 - (void)addImageOnViewWithInitialPoint:(NSPoint)aPoint path:(NSString *)aPath;

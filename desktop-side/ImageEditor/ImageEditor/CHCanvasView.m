@@ -35,7 +35,7 @@
     
     NSRectFill(dirtyRect);
     
-    //NSLog(@"%f %f", dirtyRect.size.width, dirtyRect.size.height);
+    NSLog(@"%f %f", dirtyRect.size.width, dirtyRect.size.height);
     
     for (CHAbstractElementRepresentation *element in self.elementsWithRepresentation)
     {
