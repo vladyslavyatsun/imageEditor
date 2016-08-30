@@ -11,7 +11,9 @@
 #import "CHLibraryModelController.h"
 #import "CHLibraryImage.h"
 
-@interface CHLibraryWindowController ()<NSTableViewDataSource, NSTableViewDelegate>
+NSString * const kCHLibraryTableImageCellIdentifier = @"image";
+NSString * const kCHLibraryTableTitleCellIdentifier = @"title";
+@interface CHLibraryWindowController ()<NSTableViewDataSource>
 @property (assign) IBOutlet NSTableView *libraryTable;
 @property (nonatomic, retain) CHLibraryModelController *libraryModelController;
 @end
@@ -32,10 +34,15 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
+    
     [self.libraryModelController loadImagesWithTypes:[NSImage imageTypes]];
+    
+    [self.window registerForDraggedTypes:[NSArray arrayWithObject:NSFilenamesPboardType]];
+    
     [self.libraryTable registerForDraggedTypes:[NSArray arrayWithObjects:NSURLPboardType, NSFilenamesPboardType, nil]];
     [self.libraryTable setDraggingSourceOperationMask:NSDragOperationLink forLocal:NO];
 }
+
 
 
 - (BOOL)tableView:(NSTableView *)tableView acceptDrop:(id<NSDraggingInfo>)info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)dropOperation
@@ -86,7 +93,6 @@
     BOOL result = NO;
         
     NSInteger row = [rowIndexes firstIndex];
-    
     
     NSURL *imageUrl = [self.libraryModelController imageWithIndex:row].url;
     NSImage *image = [[NSImage alloc] initWithContentsOfURL:imageUrl];

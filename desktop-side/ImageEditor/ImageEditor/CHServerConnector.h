@@ -10,15 +10,15 @@
 #import <Foundation/Foundation.h>
 
 @interface CHServerConnector : NSObject
-@property (nonatomic, assign) BOOL connection;
+@property (atomic, assign) BOOL connection;
 
-- (void)logInWithName:(NSString *)name password:(NSString *)password;
-- (void)signInWithLogin:(NSString *)name password:(NSString *)password;
+- (void)logInWithName:(NSString *)name password:(NSString *)password callback:(void (^)(BOOL))callback;
+- (void)signUpWithName:(NSString *)name password:(NSString *)password callback:(void (^)(BOOL))callback;
 - (void)logOut;
 - (void)indexesOfDocumentsCallback:(void (^)(NSArray<NSNumber *> *))callback;
 - (void)previewDataWithIndex:(NSUInteger)index callback:(void (^)(NSImage *))callback;
 - (void)downloadDocumentWithIndex:(NSUInteger)index;
 - (void)removeDocumentWithIndex:(NSUInteger)index callback:(void (^)(BOOL))callback;
-- (void)uploadDocument:(NSData *)document documentPreview:(NSImage *)documentPreview;
+- (void)uploadDocument:(NSData *)document documentPreview:(NSImage *)documentPreview callback:(void (^)(BOOL))callback;
 
 @end

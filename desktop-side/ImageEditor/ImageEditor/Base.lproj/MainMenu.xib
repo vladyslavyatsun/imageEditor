@@ -719,18 +719,25 @@ CA
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="clickOnAccountLogIn:" target="Voe-Tx-rLC" id="Ty6-rG-oQf"/>
+                                    <binding destination="Voe-Tx-rLC" name="enabled" keyPath="self.serverConnector.connection" id="WwN-cV-Lx0">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
                                 </connections>
                             </menuItem>
                             <menuItem title="Log Out" enabled="NO" id="sqZ-PL-3if">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="clickOnAccountLogOut:" target="Voe-Tx-rLC" id="G0v-gT-3wW"/>
+                                    <binding destination="Voe-Tx-rLC" name="enabled" keyPath="self.serverConnector.connection" id="DAq-io-Nzp"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Documents" enabled="NO" id="6Km-8R-upQ">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="clickOnAccountDocuments:" target="Voe-Tx-rLC" id="5iG-nO-1O2"/>
+                                    <binding destination="Voe-Tx-rLC" name="enabled" keyPath="self.serverConnector.connection" id="Oer-nN-Xd3"/>
                                 </connections>
                             </menuItem>
                         </items>
@@ -738,5 +745,6 @@ CA
                 </menuItem>
             </items>
         </menu>
+        <userDefaultsController representsSharedInstance="YES" id="Pcn-He-gho"/>
     </objects>
 </document>

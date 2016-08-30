@@ -297,7 +297,6 @@ CGFloat const kCHFocusRingThikness = 5.0;
     [self.canvasView unlockFocus];
     
     self.selectedElement = element;
-    
     return imageRepresentation;
 }
 

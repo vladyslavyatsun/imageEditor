@@ -9,8 +9,12 @@
 #import "CHAutorizationtWindowController.h"
 #import "CHServerConnector.h"
 
+NSString * const kCHAuthorizationWindowControllerTryAgainMessage = @"try again";
 @interface CHAutorizationtWindowController ()
 @property (nonatomic, assign) CHServerConnector *serverConnector;
+@property (assign) IBOutlet NSTextField *nameField;
+@property (assign) IBOutlet NSSecureTextField *passwordField;
+@property (assign) IBOutlet NSTextField *statusLabel;
 @end
 
 @implementation CHAutorizationtWindowController
@@ -25,12 +29,42 @@
     return self;
 }
 
-- (void)windowDidLoad {
+- (void)windowDidLoad
+{
     [super windowDidLoad];
-    
-    // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
 }
 
+- (IBAction)onClickLogInButton:(NSButton *)sender
+{
+    [self.serverConnector logInWithName:self.nameField.stringValue password:self.passwordField.stringValue callback:^(BOOL response)
+    {
+         if (response)
+         {
+             self.statusLabel.stringValue = @"";
+             [self.window close];
+         }
+        else
+        {
+            self.statusLabel.stringValue = kCHAuthorizationWindowControllerTryAgainMessage;
+        }
+    }];
+}
+
+- (IBAction)onClickSignIn:(NSButton *)sender
+{
+    [self.serverConnector signUpWithName:self.nameField.stringValue password:self.passwordField.stringValue callback:^(BOOL response)
+     {
+         if (response)
+        {
+            self.statusLabel.stringValue = @"";
+            [self.window close];
+        }
+         else
+         {
+             self.statusLabel.stringValue = kCHAuthorizationWindowControllerTryAgainMessage;
+         }
+     }];
+}
 
 
 @end

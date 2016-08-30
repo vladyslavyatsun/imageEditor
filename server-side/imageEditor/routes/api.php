@@ -13,10 +13,12 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:api');
+Route::post('/register', 'Auth\RegisterController@register');
+Route::post('/login', 'Auth\LoginController@login');
 
-//Route::group(['prefix' => 'api/v1', 'middleware' => 'auth:api'], function () {
-//    Route::post('/short', 'UrlMapperController@store');
-//});
+Route::get('/documents', 'DocumentsController@index');
+Route::post('/documents', 'DocumentsController@store');
+Route::get('/documents/{id}/preview', 'DocumentsController@showPreview');
+Route::get('/documents/{id}/name', 'DocumentsController@showName');
+Route::get('/documents/{id}/document', 'DocumentsController@showDocument');
+Route::delete('/documents/{id}', 'DocumentsController@destroy');

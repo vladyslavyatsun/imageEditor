@@ -13,16 +13,19 @@
 #import "CHAbstractElementRepresentation.h"
 #import "CHAutorizationtWindowController.h"
 #import "CHServerConnector.h"
+#import "CHServerDocumentsWindowController.h"
 
 NSString * const kCHSelectedElementPath = @"mainWindow.windowController.canvasViewController.selectedElement";
 NSString * const kCHCurrentDocumentPath = @"mainWindow.windowController";
 
 @interface CHAppController ()
+@property (nonatomic, retain) CHServerConnector *serverConnector;
 @property (nonatomic, retain) CHLibraryWindowController *libraryPanelController;
 @property (nonatomic, retain) CHInspectorWindowController *inspectorPanelController;
 @property (nonatomic, retain) CHInstrumentsWindowController *instrumentsPanelController;
 @property (nonatomic, retain) CHAutorizationtWindowController *autorizationWindowController;
-@property (nonatomic, retain) CHServerConnector *serverConnector;
+@property (nonatomic, retain) CHServerDocumentsWindowController *serverDocumentsWindowController;
+
 
 @end
 
@@ -48,10 +51,6 @@ NSString * const kCHCurrentDocumentPath = @"mainWindow.windowController";
                options:NSKeyValueObservingOptionNew
                context:[CHAppController class]];
     
-    
-    
-    
-    [self.serverConnector logInWithName:@"test" password:@"test1234"];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification
@@ -145,7 +144,14 @@ NSString * const kCHCurrentDocumentPath = @"mainWindow.windowController";
 
 - (IBAction)clickOnAccountDocuments:(id)sender
 {
-    
+    if ([self.serverDocumentsWindowController.window isVisible])
+    {
+        [self.serverDocumentsWindowController.window orderOut:self];
+    }
+    else
+    {
+        [self.serverDocumentsWindowController.window makeKeyAndOrderFront:self];
+    }
 }
 
 #pragma mark getters
@@ -180,10 +186,20 @@ NSString * const kCHCurrentDocumentPath = @"mainWindow.windowController";
 {
     if (!_autorizationWindowController)
     {
-        _autorizationWindowController = [[CHAutorizationtWindowController alloc] init];
-        [_autorizationWindowController.window makeKeyAndOrderFront:self];
+        _autorizationWindowController = [[CHAutorizationtWindowController alloc] initWithServerConnector:self.serverConnector];
+        [_autorizationWindowController.window orderOut:self];
     }
     return _autorizationWindowController;
+}
+
+- (CHServerDocumentsWindowController *)serverDocumentsWindowController
+{
+    if (!_serverDocumentsWindowController)
+    {
+        _serverDocumentsWindowController = [[CHServerDocumentsWindowController alloc] initWithServerConnector:self.serverConnector];
+        [_serverDocumentsWindowController.window orderOut:self];
+    }
+    return _serverDocumentsWindowController;
 }
 
 - (void)dealloc
@@ -195,6 +211,7 @@ NSString * const kCHCurrentDocumentPath = @"mainWindow.windowController";
     [_inspectorPanelController release];
     [_instrumentsPanelController release];
     [_autorizationWindowController release];
+    [_serverDocumentsWindowController release];
     [super dealloc];
 }
 @end

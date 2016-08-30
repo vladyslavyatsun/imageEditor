@@ -235,8 +235,6 @@ NSString * const kCHDocumentWindowUndoManagerActionCopying = @"Copying";
 {
     if (self.selectedElement)
     {
-#warning
-        
         CHAbstractElement *modelElement = self.selectedElement.modelElement;
         
         [self removeAbstractElement:modelElement withUndoManagerAction:kCHDocumentWindowControllerUndoManagerActionRemoving];

@@ -11,27 +11,39 @@
 #import "CHServerConnector.h"
 NSString * const kCHServerConnectorAuthorizationHeader = @"Authorization";
 
-NSString * const kCHServerConnectorLogInURL = @"http://10.55.33.16:8000/api/login";
-NSString * const kCHServerConnectorSignInURL =  @"http://10.55.33.16:8000/api/register";
-NSString * const kCHServerConnectorIndexesOfDocumentURL = @"http://10.55.33.16:8000/api/documents";
-NSString * const kCHServerConnectorDocumentsURL= @"http://10.55.33.16:8000/api/documents/";
+NSString * const kCHServerConnectorLogInURL = @"http://10.55.33.13:8000/api/login";
+NSString * const kCHServerConnectorSignInURL =  @"http://10.55.33.13:8000/api/register";
+NSString * const kCHServerConnectorIndexesOfDocumentURL = @"http://10.55.33.13:8000/api/documents";
+NSString * const kCHServerConnectorDocumentsURL= @"http://10.55.33.13:8000/api/documents/";
 NSString * const kCHServerConnectorPreviewURL = @"/preview";
 NSString * const kCHServerConnectorDocumentURL = @"/document";
-NSString * const kCHServerConnectorErrorMessage =@"Error";
-NSString * const kCHServerConnectorTryAgainMessage = @"Try again";
+NSString * const kCHServerConnectorTryAgainMessage = @"Try again!";
 NSString * const kCHServerConnectorHeaderContentType = @"Content-Type";
+NSString * const kCHServerConnectorName = @"name";
+NSString * const kCHServerConnectorPassword = @"password";
+NSString * const kCHServerConnectorPasswordConfirmation = @"password_confirmation";
+NSString * const kCHServerConnectorCustomFileExtention = @"chi";
 
 @interface CHServerConnector()
-@property (nonatomic, assign) NSString *accessToken;
+@property (nonatomic, copy) NSString *accessToken;
 @end
 
 @implementation CHServerConnector
+- (instancetype)init
+{
+    self = [super init];
+    if (self)
+    {
+        _accessToken = [[NSString alloc] init];
+    }
+    return self;
+}
 
-- (void)logInWithName:(NSString *)name password:(NSString *)password
+- (void)logInWithName:(NSString *)name password:(NSString *)password callback:(void (^)(BOOL))callback
 {
     NSError *error = nil;
-    NSDictionary *bodyDictionary = @{@"name":name,
-                                     @"password":password};
+    NSDictionary *bodyDictionary = @{kCHServerConnectorName:name,
+                                     kCHServerConnectorPassword:password};
     NSData *bodyData = [NSJSONSerialization dataWithJSONObject:bodyDictionary options:0 error:&error];
     
     NSURL *url = [NSURL URLWithString:kCHServerConnectorLogInURL];
@@ -58,18 +70,23 @@ NSString * const kCHServerConnectorHeaderContentType = @"Content-Type";
                                           {
                                               NSDictionary *responseData = (NSDictionary *)json;
                                               
-                                              if ([responseData objectForKey:@"token"] != nil)
+                                              if ([responseData objectForKey:@"token"])
                                               {
                                                   self.accessToken = [responseData objectForKey:@"token"];
-                                              }
-                                              else
-                                              {
+                                                  self.connection = YES;
                                                   dispatch_async(dispatch_get_main_queue(), ^
                                                                  {
-                                                                     NSLog(@"No connection");
-                                                                     [self alertWithMessage:kCHServerConnectorTryAgainMessage];
+                                                                     callback(YES);
                                                                  });
                                               }
+
+                                          }
+                                          else
+                                          {
+                                              dispatch_async(dispatch_get_main_queue(), ^
+                                                             {
+                                                                 callback(NO);
+                                                             });
                                           }
                                       }
                                   }];
@@ -77,12 +94,12 @@ NSString * const kCHServerConnectorHeaderContentType = @"Content-Type";
     [task resume];
 
 }
-- (void)signInWithLogin:(NSString *)name password:(NSString *)password
+- (void)signUpWithName:(NSString *)name password:(NSString *)password callback:(void (^)(BOOL))callback
 {
     NSError *error = nil;
-    NSDictionary *bodyDictionary = @{@"name":name,
-                                     @"password":password,
-                                     @"password_confirmation":password};
+    NSDictionary *bodyDictionary = @{kCHServerConnectorName:name,
+                                     kCHServerConnectorPassword:password,
+                                     kCHServerConnectorPasswordConfirmation:password};
     
     NSData *bodyData = [NSJSONSerialization dataWithJSONObject:bodyDictionary options:0 error:&error];
     
@@ -100,7 +117,6 @@ NSString * const kCHServerConnectorHeaderContentType = @"Content-Type";
                                       if (error != nil)
                                       {
                                           NSLog(@"ERROR: %@", error);
-                                          
                                       }
                                       else
                                       {
@@ -113,16 +129,21 @@ NSString * const kCHServerConnectorHeaderContentType = @"Content-Type";
                                               if ([responseData objectForKey:@"token"] != nil)
                                               {
                                                   self.accessToken = [responseData objectForKey:@"token"];
-                                              }
-                                              else
-                                              {
+                                                  self.connection = YES;
                                                   dispatch_async(dispatch_get_main_queue(), ^
                                                                  {
-                                                                     NSLog(@"No connection");
-                                                                     [self alertWithMessage:kCHServerConnectorTryAgainMessage];
+                                                                     callback(YES);
                                                                  });
                                               }
                                           }
+                                          else
+                                          {
+                                              dispatch_async(dispatch_get_main_queue(), ^
+                                                             {
+                                                                 callback(NO);
+                                                             });
+                                          }
+
                                       }
                                   }];
     
@@ -133,6 +154,7 @@ NSString * const kCHServerConnectorHeaderContentType = @"Content-Type";
 
 - (void)logOut;
 {
+    self.connection = NO;
     self.accessToken = nil;
 }
 
@@ -169,7 +191,10 @@ NSString * const kCHServerConnectorHeaderContentType = @"Content-Type";
                                               }
                                               [key release];
                                               
-                                              callback(indexes);
+                                              dispatch_async(dispatch_get_main_queue(), ^
+                                                             {
+                                                                 callback(indexes);
+                                                             });
                         
                                           }
                                           [indexes release];
@@ -200,8 +225,11 @@ NSString * const kCHServerConnectorHeaderContentType = @"Content-Type";
                                           }
                                           else
                                           {
-                                              NSImage *image = [[NSImage alloc] initWithContentsOfURL:location];
-                                              callback(image);
+                                              NSImage *image = [[[NSImage alloc] initWithContentsOfURL:location] autorelease];
+                                              dispatch_async(dispatch_get_main_queue(), ^
+                                                             {
+                                                                 callback(image);
+                                                             });
                                           }
                                   }];
     
@@ -227,14 +255,13 @@ NSString * const kCHServerConnectorHeaderContentType = @"Content-Type";
                                           if (error != nil)
                                           {
                                               NSLog(@"ERROR: %@", error);
-                                              
                                           }
                                           else
                                           {
                                               NSFileManager *fileManager = [NSFileManager defaultManager];
                                               NSArray *urls = [fileManager URLsForDirectory:NSDownloadsDirectory inDomains:NSUserDomainMask];
                                               NSURL *documentsDirectory = [urls objectAtIndex:0];
-                                              NSURL *destinationUrl = [documentsDirectory URLByAppendingPathComponent:[[location URLByDeletingPathExtension] lastPathComponent]];
+                                              NSURL *destinationUrl = [documentsDirectory URLByAppendingPathComponent:[[[location URLByDeletingPathExtension] lastPathComponent] stringByAppendingPathExtension:kCHServerConnectorCustomFileExtention]];
                                               NSError *fileManagerError;
                                               [fileManager removeItemAtURL:destinationUrl error:NULL];
                                               [fileManager copyItemAtURL:location toURL:destinationUrl error:&fileManagerError];
@@ -266,17 +293,24 @@ NSString * const kCHServerConnectorHeaderContentType = @"Content-Type";
                                           else
                                           {
                                               id json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-                                              
                                               if ([json isKindOfClass:[NSDictionary class]])
                                               {
                                                   NSDictionary *location = (NSDictionary *)json;
-                                                  if ([[location objectForKey:@"status"] compare:@"ok"] == NSOrderedSame)
+                                                  if ([[location objectForKey:@"status"] compare:@"deleted"] == NSOrderedSame)
                                                   {
-                                                      callback(YES);
+                                                      dispatch_async(dispatch_get_main_queue(), ^
+                                                                     {
+                                                                         callback(YES);
+                                                                     });
+
                                                   }
                                                   else
                                                   {
-                                                      callback(NO);
+                                                      dispatch_async(dispatch_get_main_queue(), ^
+                                                                     {
+                                                                         callback(NO);
+                                                                     });
+
                                                   }
                                               }
                                           }
@@ -286,7 +320,7 @@ NSString * const kCHServerConnectorHeaderContentType = @"Content-Type";
 
 }
 
-- (void)uploadDocument:(NSData *)document documentPreview:(NSImage *)documentPreview
+- (void)uploadDocument:(NSData *)document documentPreview:(NSImage *)documentPreview callback:(void (^)(BOOL))callback
 {
     NSData *imageData = [documentPreview TIFFRepresentation];
     NSURL *url = [NSURL URLWithString:kCHServerConnectorDocumentsURL];
@@ -296,26 +330,23 @@ NSString * const kCHServerConnectorHeaderContentType = @"Content-Type";
     
     NSString *boundary = [NSString stringWithFormat:@"----------*------------------*************--------------*------------"];
     NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
-    [request addValue:contentType forHTTPHeaderField:@"Content-Type"];
+    [request addValue:contentType forHTTPHeaderField:kCHServerConnectorHeaderContentType];
     
-    [request addValue:@"f0UH609g7AXz0WWY" forHTTPHeaderField:@"Authorization"];
-    
-    
+    [request addValue:self.accessToken forHTTPHeaderField:@"Authorization"];
+
     NSMutableData *body = [NSMutableData data];
     
     [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"preview\"; filename=\"%@.tiff\"\r\n", @"zhdbv"] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"preview\"; filename=\"preview.tiff\"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[NSData dataWithData:imageData]];
     
 
     [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"document\"; filename=\"%@.tiff\"\r\n", @"zhdbv"] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"document\"; filename=\"document.chi\"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[NSData dataWithData:imageData]];
+    [body appendData:[NSData dataWithData:document]];
     [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    [body appendData:[NSData dataWithData:imageData]];
     
     [request setHTTPBody:body];
     
@@ -328,17 +359,22 @@ NSString * const kCHServerConnectorHeaderContentType = @"Content-Type";
                                       if (error != nil)
                                       {
                                           NSLog(@"ERROR: %@", error);
+                                          dispatch_async(dispatch_get_main_queue(), ^
+                                                         {
+                                                             callback(NO);
+                                                         });
+
                                           
                                       }
                                       else
                                       {
                                           dispatch_async(dispatch_get_main_queue(), ^
                                                          {
-                                                             NSLog(@"No connection");
-                                                             [self alertWithMessage:@"try again"];
+                                                             callback(YES);
                                                          });
+
                                       }
-                                        }];
+                                    }];
     
     [task resume];
 }
@@ -348,15 +384,20 @@ NSString * const kCHServerConnectorHeaderContentType = @"Content-Type";
 {
     NSAlert *alert = [[NSAlert alloc] init];
     [alert addButtonWithTitle:@"OK"];
-    
     [alert setMessageText:message];
     [alert setAlertStyle:NSWarningAlertStyle];
-    
     [alert runModal];
-    
     [alert release];
-    
 }
 
+
+- (void)setAccessToken:(NSString *)accessToken
+{
+    if (_accessToken != accessToken)
+    {
+        [_accessToken release];
+        _accessToken = [accessToken copy];
+    }
+}
 
 @end

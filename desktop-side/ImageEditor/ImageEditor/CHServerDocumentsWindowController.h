@@ -7,7 +7,8 @@
 //
 
 #import <Cocoa/Cocoa.h>
+@class CHServerConnector;
 
-@interface CHDocumentsWindowController : NSWindowController
-
+@interface CHServerDocumentsWindowController : NSWindowController
+- (instancetype)initWithServerConnector:(CHServerConnector *)serverConnector;
 @end

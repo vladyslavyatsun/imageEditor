@@ -120,8 +120,7 @@
                                     <connections>
                                         <action trigger="doubleAction" selector="onTableDoubleClickAction:" target="-2" id="gnE-WM-Ssp"/>
                                         <binding destination="3qx-Pw-dCM" name="content" keyPath="arrangedObjects" id="UPL-ug-Z18"/>
-                                        <outlet property="dataSource" destination="-2" id="ZRo-9L-JoY"/>
-                                        <outlet property="delegate" destination="-2" id="dRD-oX-HDg"/>
+                                        <outlet property="dataSource" destination="-2" id="WgP-K0-hbB"/>
                                     </connections>
                                 </tableView>
                             </subviews>
@@ -155,7 +154,7 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="DGX-UB-vTk"/>
             </connections>
-            <point key="canvasLocation" x="283.5" y="321.5"/>
+            <point key="canvasLocation" x="80.5" y="325.5"/>
         </window>
     </objects>
 </document>
