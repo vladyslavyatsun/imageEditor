@@ -9,8 +9,8 @@
 
 #import <Cocoa/Cocoa.h>
 #import "CHServerConnector.h"
-NSString * const kCHServerConnectorAuthorizationHeader = @"Authorization";
 
+NSString * const kCHServerConnectorAuthorizationHeader = @"Authorization";
 NSString * const kCHServerConnectorLogInURL = @"http://10.55.33.13:8000/api/login";
 NSString * const kCHServerConnectorSignInURL =  @"http://10.55.33.13:8000/api/register";
 NSString * const kCHServerConnectorIndexesOfDocumentURL = @"http://10.55.33.13:8000/api/documents";
@@ -92,6 +92,7 @@ NSString * const kCHServerConnectorCustomFileExtention = @"chi";
                                   }];
     
     [task resume];
+    [session finishTasksAndInvalidate];
 
 }
 - (void)signUpWithName:(NSString *)name password:(NSString *)password callback:(void (^)(BOOL))callback
@@ -148,7 +149,7 @@ NSString * const kCHServerConnectorCustomFileExtention = @"chi";
                                   }];
     
     [task resume];
-
+    [session finishTasksAndInvalidate];
 }
 
 
@@ -202,7 +203,7 @@ NSString * const kCHServerConnectorCustomFileExtention = @"chi";
                                   }];
     
     [task resume];
-
+    [session finishTasksAndInvalidate];
 }
 
 - (void)previewDataWithIndex:(NSUInteger)index callback:(void (^)(NSImage *))callback
@@ -234,7 +235,7 @@ NSString * const kCHServerConnectorCustomFileExtention = @"chi";
                                   }];
     
     [task resume];
-
+    [session finishTasksAndInvalidate];
 }
 
 
@@ -269,7 +270,7 @@ NSString * const kCHServerConnectorCustomFileExtention = @"chi";
                                       }];
     
     [task resume];
-    
+    [session finishTasksAndInvalidate];
 }
 
 - (void)removeDocumentWithIndex:(NSUInteger)index callback:(void (^)(BOOL))callback
@@ -317,7 +318,7 @@ NSString * const kCHServerConnectorCustomFileExtention = @"chi";
                                       }];
     
     [task resume];
-
+    [session finishTasksAndInvalidate];
 }
 
 - (void)uploadDocument:(NSData *)document documentPreview:(NSImage *)documentPreview callback:(void (^)(BOOL))callback
@@ -377,6 +378,7 @@ NSString * const kCHServerConnectorCustomFileExtention = @"chi";
                                     }];
     
     [task resume];
+    [session finishTasksAndInvalidate];
 }
 
 
@@ -398,6 +400,12 @@ NSString * const kCHServerConnectorCustomFileExtention = @"chi";
         [_accessToken release];
         _accessToken = [accessToken copy];
     }
+}
+
+- (void)dealloc
+{
+    [_accessToken release];
+    [super dealloc];
 }
 
 @end

@@ -17,7 +17,7 @@ CGFloat const kCHMoveElementStep = 3.0;
 CGFloat const kCHFocusRingThikness = 5.0;
 @interface CHCanvasViewController ()
 @property (atomic, retain) NSMutableArray *elementsWithRepresentation;
-@property (nonatomic, assign) CHCanvasView *canvasView;
+@property (nonatomic, retain) CHCanvasView *canvasView;
 @property (atomic, assign) CHAbstractElementRepresentation *selectedElement;
 @property (nonatomic, assign) NSPoint elementLocationInViewOnMouseDrag;
 @property (nonatomic, assign) NSPoint elmentLocationInViewOnMouseDown;
@@ -302,6 +302,7 @@ CGFloat const kCHFocusRingThikness = 5.0;
 
 - (void)dealloc
 {
+    [_elementsWithRepresentation release];
     [_canvasView release];
     [super dealloc];
 }

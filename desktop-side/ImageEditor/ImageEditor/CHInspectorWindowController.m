@@ -126,7 +126,6 @@
 
 - (void)dealloc
 {
- //   [NSApp removeObserver:self forKeyPath:kCHSelectedElementPath];
     [super dealloc];
 }
 

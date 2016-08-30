@@ -44,7 +44,6 @@ NSString * const kCHLibraryTableTitleCellIdentifier = @"title";
 }
 
 
-
 - (BOOL)tableView:(NSTableView *)tableView acceptDrop:(id<NSDraggingInfo>)info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)dropOperation
 {
     NSPasteboard* pboard = [info draggingPasteboard];
@@ -58,15 +57,18 @@ NSString * const kCHLibraryTableTitleCellIdentifier = @"title";
     
     if (imageFile)
     {
-        CHLibraryImage *image = [[CHLibraryImage alloc] initWithTitle:url.lastPathComponent.stringByDeletingPathExtension url:url readOnly:NO];
-        NSImage *imageData = [[NSImage alloc] initWithContentsOfURL:image.url];
+        NSString *imageTitle = url.lastPathComponent;
+        NSURL *imageURL = [NSURL fileURLWithPath:imageTitle relativeToURL:url];
+        CHLibraryImage *image = [[CHLibraryImage alloc] initWithTitle:imageTitle.stringByDeletingPathExtension url:imageURL readOnly:NO];
+        NSImage *imageData = [[NSImage alloc] initWithContentsOfFile:image.url.path];
         NSData *imageBinaryData = imageData.TIFFRepresentation;
         
-        if ([self.libraryModelController loadImageData:imageBinaryData withFileName:image.url.lastPathComponent])
+        if ([self.libraryModelController loadImageData:imageBinaryData withFileName:url.lastPathComponent])
         {
+            image.url = [NSURL fileURLWithPath:[self.libraryModelController.applicationSupportPath stringByAppendingPathComponent:imageTitle]];
             [self.libraryModelController addImageInLibrary:image withIndex:row];
         }
-         
+        
         [image release];
         [imageData release];
         [imageFile release];
@@ -74,6 +76,7 @@ NSString * const kCHLibraryTableTitleCellIdentifier = @"title";
     
     return YES;
 }
+
 
 - (NSDragOperation)tableView:(NSTableView *)tableView validateDrop:(id<NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)dropOperation
 {

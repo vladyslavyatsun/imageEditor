@@ -125,6 +125,11 @@ NSString * const kCHServerDocumentControllerFileExtention = @"chi";
     return self.indexesOfDocuments.count;
 }
 
+- (void)dealloc
+{
+    [_indexesOfDocuments release];
+    [super dealloc];
+}
 
 
 @end
