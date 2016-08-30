@@ -60,6 +60,10 @@ NSString * const kCHServerConnectorCustomFileExtention = @"chi";
                                       if (error != nil)
                                       {
                                           NSLog(@"error: %@", error);
+                                          dispatch_async(dispatch_get_main_queue(), ^
+                                                         {
+                                                             [self alertWithMessage:@"no conection"];
+                                                         });
                         
                                       }
                                       else
@@ -118,6 +122,11 @@ NSString * const kCHServerConnectorCustomFileExtention = @"chi";
                                       if (error != nil)
                                       {
                                           NSLog(@"ERROR: %@", error);
+                                          dispatch_async(dispatch_get_main_queue(), ^
+                                                         {
+                                                             [self alertWithMessage:@"no conection"];
+                                                         });
+
                                       }
                                       else
                                       {
