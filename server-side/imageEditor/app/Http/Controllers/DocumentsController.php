@@ -59,11 +59,20 @@ class DocumentsController extends Controller
             $document = new Document();
             $document->name = $request->file('document')->getClientOriginalName();
 
-            $preview_path = $request->file('preview')->store('previews');
+//            $preview_path = $request->file('preview')->store('previews');
+//            $document->document_preview_path = $preview_path;
+//            $document->document_preview_name = $request->file('preview')->getFilename();
+//
+//            $document_path = $request->file('document')->store('documents');
+            $preview_path = $request->file('preview')->storeAs(
+                'previews', str_random(16)
+            );
             $document->document_preview_path = $preview_path;
             $document->document_preview_name = $request->file('preview')->getFilename();
 
-            $document_path = $request->file('document')->store('documents');
+            $document_path = $request->file('document')->storeAs(
+                'documents', str_random(16)
+            );
             $document->document_path = $document_path;
             $document->document_name = $request->file('document')->getFilename();
 
