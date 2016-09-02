@@ -16,7 +16,8 @@
 
 NSString * const kCHDocumentWindowControllerUndoManagerActionAdding = @"Adding";
 NSString * const kCHDocumentWindowControllerUndoManagerActionRemoving = @"Removing";
-NSString * const kCHDocumentWindowUndoManagerActionCopying = @"Copying";
+NSString * const kCHDocumentWindowControllerUndoManagerActionCopying = @"Copying";
+NSString * const kCHDocumentWindowControllerKeySelectedElement = @"selectedElement";
 
 @interface CHDocumentWindowController ()
 @property (nonatomic, retain) CHCanvasViewController *canvasViewController;
@@ -55,7 +56,7 @@ NSString * const kCHDocumentWindowUndoManagerActionCopying = @"Copying";
     }
     
     [_canvasViewController addObserver:self
-                            forKeyPath:@"selectedElement"
+                            forKeyPath:kCHDocumentWindowControllerKeySelectedElement
                                options:NSKeyValueObservingOptionNew
                                context:[CHDocumentWindowController class]];
     
@@ -77,9 +78,9 @@ NSString * const kCHDocumentWindowUndoManagerActionCopying = @"Copying";
 {
     if (context == [CHDocumentWindowController class])
     {
-        if ([keyPath isEqualToString:@"selectedElement"])
+        if ([keyPath isEqualToString:kCHDocumentWindowControllerKeySelectedElement])
         {
-            self.selectedElement = [self.canvasViewController valueForKey:@"selectedElement"];
+            self.selectedElement = [self.canvasViewController valueForKey:kCHDocumentWindowControllerKeySelectedElement];
         }
     }
     else
@@ -106,7 +107,6 @@ NSString * const kCHDocumentWindowUndoManagerActionCopying = @"Copying";
 - (void)removeElementFromView:(NSNotification *)notification
 {
     CHAbstractElement *element = notification.userInfo[kCHKeyOfDocumentModelControllerNotificationsUserInfo];
-    
     [self.canvasViewController removeElementFromView:element];
 }
 
@@ -114,7 +114,6 @@ NSString * const kCHDocumentWindowUndoManagerActionCopying = @"Copying";
 - (void)addNewElementOnView:(NSNotification *)notification
 {
     id element = [notification.userInfo objectForKey:kCHKeyOfDocumentModelControllerNotificationsUserInfo];
-    
     if([element isKindOfClass:[CHAbstractElement class]])
     {
         [self.canvasViewController addElementOnView:element];
@@ -216,11 +215,8 @@ NSString * const kCHDocumentWindowUndoManagerActionCopying = @"Copying";
     {
         
         NSPoint startPoint = NSMakePoint([sender draggingLocation].x - image.size.width/2,  self.canvasViewController.view.frame.size.height - [sender draggingLocation].y - image.size.height / 2);
-        
         NSPoint endPoint = NSMakePoint(startPoint.x + image.size.width, startPoint.y + image.size.height);
-        
         CHAbstractElement *newImage = (CHAbstractElement *)[CHAbstractElement imageWithStartPoint:startPoint endPoint:endPoint image:image];
-        
         [self addAbstractElement:newImage withUndoManagerAction:kCHDocumentWindowControllerUndoManagerActionAdding];
     }
     
@@ -295,7 +291,7 @@ NSString * const kCHDocumentWindowUndoManagerActionCopying = @"Copying";
             
             if (element)
             {
-                [self addAbstractElement:element withUndoManagerAction:kCHDocumentWindowUndoManagerActionCopying];
+                [self addAbstractElement:element withUndoManagerAction:kCHDocumentWindowControllerUndoManagerActionCopying];
             }
         }
     }

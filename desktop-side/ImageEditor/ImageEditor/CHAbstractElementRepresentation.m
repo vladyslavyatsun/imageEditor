@@ -21,7 +21,7 @@
 
 NSString * const kCHElementRepresentationDidUpdate = @"element representation update";
 @interface CHAbstractElementRepresentation()
-@property (nonatomic, assign) NSPoint oldPointLocation;
+
 @end
 @implementation CHAbstractElementRepresentation 
 

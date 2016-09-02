@@ -28,11 +28,10 @@
 - (void)reloadRepresentation:(NSNotification *)notification
 {
     CHShape *modelElement = notification.object;
-    
     self.color = modelElement.color;
-    
     [super reloadRepresentation:notification];
 }
+
 
 - (void)addPoint:(NSPoint)aPoint
 {

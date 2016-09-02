@@ -88,13 +88,10 @@ CGFloat const kCHFocusRingThikness = 5.0;
         }
         
         [self.elementsWithRepresentation removeObject:elementWillDelete];
-        
         [self.canvasView setNeedsDisplayInRect:dirtyRect];
 
     }
 }
-
-
 
 #pragma mark - mouse events
 - (void)mouseDown:(NSEvent *)event
@@ -110,7 +107,6 @@ CGFloat const kCHFocusRingThikness = 5.0;
             if([element hitTest:curentLocationInView])
             {
                 self.elmentLocationInViewOnMouseDown = curentLocationInView;
-                
                 [self selectElement:element];
                 break;
             }

@@ -9,6 +9,9 @@
 #import "CHLineRepresentation.h"
 #import "CHAbstractElement.h"
 
+@interface CHLineRepresentation()
+@property (nonatomic, assign) BOOL lineInversion;
+@end
 @implementation CHLineRepresentation
 
 - (instancetype)initWithModelElement:(CHAbstractElement *)modelElement
@@ -34,7 +37,7 @@
     CGFloat width;
     CGFloat height;
     
-    if (self.modelElement.endPoint.x > self.modelElement.startPoint.x)
+    if (self.modelElement.endPoint.x >= self.modelElement.startPoint.x)
     {
         x = self.modelElement.startPoint.x;
         width = self.modelElement.endPoint.x - self.modelElement.startPoint.x;
@@ -43,9 +46,10 @@
     {
         x = self.modelElement.endPoint.x;
         width = self.modelElement.startPoint.x - self.modelElement.endPoint.x;
+        self.lineInversion = YES;
     }
     
-    if (self.modelElement.endPoint.y > self.modelElement.startPoint.y)
+    if (self.modelElement.endPoint.y >= self.modelElement.startPoint.y)
     {
         y = self.modelElement.startPoint.y;
         height = self.modelElement.endPoint.y - self.modelElement.startPoint.y;
@@ -54,8 +58,29 @@
     {
         y = self.modelElement.endPoint.y;
         height = self.modelElement.startPoint.y - self.modelElement.endPoint.y;
+        self.lineInversion = YES;
     }
     return NSMakeRect(x, y, width, height);
+}
+
+- (void)updateModelElement
+{
+    NSPoint startPoint;
+    NSPoint endPoint;
+    if (self.lineInversion)
+    {
+        startPoint = NSMakePoint(self.rect.origin.x, self.rect.origin.y + self.rect.size.height);
+        endPoint = NSMakePoint(self.rect.origin.x + self.rect.size.width, self.rect.origin.y);
+    }
+    else
+    {
+        startPoint = NSMakePoint(self.rect.origin.x, self.rect.origin.y);
+        endPoint = NSMakePoint(self.rect.origin.x + self.rect.size.width, self.rect.origin.y + self.rect.size.height);
+    }
+    
+    [self.modelElement setStartPoint:startPoint];
+    [self.modelElement setEndPoint:endPoint];
+
 }
 
 - (void)draw
@@ -63,7 +88,6 @@
     self.bezierPath = [NSBezierPath bezierPath];
     [self.bezierPath moveToPoint:self.modelElement.startPoint];
     [self.bezierPath lineToPoint:self.modelElement.endPoint];
-    
     [super draw];
 }
 
