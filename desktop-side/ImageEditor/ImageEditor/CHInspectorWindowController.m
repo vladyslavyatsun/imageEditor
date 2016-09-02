@@ -90,7 +90,7 @@
 {
     [[self.undoManager prepareWithInvocationTarget:self] setHeight:element.rect.size.height forElement:self.selectedElement];
     
-    [element setNewWidth:height];
+    [element setNewHeight:height];
 }
 
 - (void)setHeight:(CGFloat)height
